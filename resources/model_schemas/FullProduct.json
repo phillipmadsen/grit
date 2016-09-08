@@ -1,0 +1,147 @@
+[
+{"fieldInput": "id:bigIncrements", "htmlType": "", "validations": "", "searchable": false, "fillable": false, "primary": true },
+{"fieldInput": "name:string", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "sku:string:nullable", "htmlType": "text", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "category:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "price:decimal,20,2:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "created_at:dateTime", "htmlType": "date", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "quantity:integer:unsigned:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "sales:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "status:string:nullable", "htmlType": "select:Online,Offline,Removed,Archived", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "options-checkbox:string:nullable", "htmlType": "checkbox-group:HasVideo, HasProdDocs, HasReviewsTab, HasSocialShare, HasRecent, HasNew, HasLastViewed, HasBrandInfo, HasRelated, HasPopular", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "options-radio:string:nullable", "htmlType": "radio:HasVideo, HasProdDocs, HasReviewsTab, HasSocialShare, HasRecent, HasNew, HasLastViewed, HasBrandInfo, HasRelated, HasPopular", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "conditional-checkbox:string:nullable", "htmlType": "checkbox-group:ONSALE, ISPROMO", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "conditional-radio:string:nullable", "htmlType": "radio:ONSALE, ISPROMO", "validations": "", "searchable": true, "fillable": true, "primary": false },
+
+{"fieldInput": "use_twitter:string", "htmlType": "checkbox:yes", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "use_google_plus:string", "htmlType": "checkbox:yes", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "use_open_graph:string", "htmlType": "checkbox:yes", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "currency:string:default,'USD'", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "tax:decimal,20,2:default,0", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "shipping:decimal,20,2:default,0", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "sale_price:decimal,20,2:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "sale_price_coupon_code:string:default,0", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "sale_price_start_date:timestamp:nullable", "htmlType": "date", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "sale_price_end_date:timestamp:nullable", "htmlType": "date", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "onsale:string", "htmlType": "checkbox:true", "validations": "", "searchable": true, "fillable": false, "primary": false },
+{"fieldInput": "ispromo:string", "htmlType": "checkbox:true", "validations": "", "searchable": true, "fillable": false, "primary": false },
+{"fieldInput": "is_draft:string", "htmlType": "checkbox:true", "validations": "", "searchable": true, "fillable": false, "primary": false },
+
+{"fieldInput": "office_status:string:nullable", "htmlType": "select:Draft,Review,inDesign,inProof,inProcess,Deleted,Published,Hidden", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "availability:string:nullable", "htmlType": "select:Discontinued,In Stock,On Backorder,Pre - Orders,Promo Active,Deleted", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "product_category:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "short_description:text:nullable", "htmlType": "textarea", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "description:text:nullable", "htmlType": "textarea", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "product_short_description:text:nullable", "htmlType": "textarea", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "product_description:text:nullable", "htmlType": "textarea", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "product_notes:text:nullable", "htmlType": "textarea", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+
+
+
+{"fieldInput": "meta_title:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "meta_description:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "meta_keywords:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "available_on:dateTime", "htmlType": "date", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "upc:string:nullable", "htmlType": "number", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "guid:string:nullable", "htmlType": "number", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "asin:string:nullable", "htmlType": "number", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "mpn:string:nullable", "htmlType": "number", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "model:string:nullable", "htmlType": "text", "validations": "", "searchable": true, "fillable": true, "primary": false },
+{"fieldInput": "slug:string,255", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "manufacturer:string:default,'The Grace Company'", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "product_line:string:nullable", "htmlType": "select:Qnuque,Hand Quilting,Machine Quilting, TrueCut, Accessories, Frames, Hoops", "validations": "", "searchable": true, "fillable": true, "primary": false },
+
+{"fieldInput": "primary_image_label:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "primary_image:string:nullable", "htmlType": "file", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "second_image_label:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "second_image:string:nullable", "htmlType": "file", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "third_image_label:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "third_image:string:nullable", "htmlType": "file", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "fourth_image_label:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "fourth_image:string:nullable", "htmlType": "file", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "fifth_image_label:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "fifth_image:string:nullable", "htmlType": "file", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "banner_image_label:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "banner_image:string:nullable", "htmlType": "file", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "admin_image_label:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "admin_image:string:nullable", "htmlType": "file", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "thumb_image_label:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "thumb_image:string:nullable", "htmlType": "file", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "list_item_1:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "list_item_2:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "list_item_3:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "list_item_4:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "list_item_5:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "brand_image:string:nullable", "htmlType": "file", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "activate_image:string:nullable", "htmlType": "checkbox:Primary,Second,Third,Fourth,Fifth,Banner,Admin,Thumb", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "path:string,255", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "file_name:string,255", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "file_size:integer", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "tax_status:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "tax_id:integer:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "grace_price:decimal,20,2:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "list_price:decimal,20,2:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "promo_price:decimal,20,2:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "msrp_price:decimal,20,2:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "employee_price:decimal,20,2:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "class:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "reference_id:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "quantity_available:integer:unsigned:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "grace_inventory:integer:unsigned:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "vendor_inventory:integer:unsigned:default,0", "htmlType": "number", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "product_video:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "youtube_video:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "vimeo_video:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "product_doc:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "tracking:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+
+{"fieldInput": "weight:text:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "length:text:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "height:text:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "depth:text:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+ 
+{"fieldInput": "user_id:integer:unsigned:nullable", "htmlType": "", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "cart_id:bigInteger:unsigned:nullable", "htmlType": "", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "order_id:bigInteger:unsigned:nullable", "htmlType": "", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+
+{"fieldInput": "updated_at:dateTime", "htmlType": "date", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "published_at:dateTime", "htmlType": "date", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+{"fieldInput": "upc:nullable:unique", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "guid:nullable:unique", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "asin:nullable:unique", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "mpn:nullable:unique", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+
+
+{"fieldInput": "schema_html:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "schema_body:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "schema_content:string:nullable", "htmlType": "text", "validations": "", "searchable": false, "fillable": true, "primary": false },
+{"fieldInput": "ld_json:text", "htmlType": "textarea", "validations": "", "searchable": false, "fillable": true, "primary": false }
+
+
+]

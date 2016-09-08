@@ -1,0 +1,98 @@
+[
+  {
+    "fieldInput": "id:increments",
+    "htmlType": "",
+    "validations": "",
+    "searchable": false,
+    "fillable": false,
+    "primary": true
+  },
+{
+    "fieldInput": "location_type:string",
+    "htmlType": "select:Billing,Mailing,Profile,Business,Other,Dealer",
+    "validations": "",
+    "searchable": true,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "nickname:string",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "address:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "street:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "street_additional:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "city:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "state:select",
+    "htmlType": "select:UT,AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY",
+    "validations": "",
+    "searchable": true,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "country:string:default,United States",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "zipcode:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "latitude:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false
+},
+{
+    "fieldInput": "longitude:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false
+}
+]

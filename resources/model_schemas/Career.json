@@ -1,0 +1,66 @@
+ [{
+    "fieldInput": "id:increments",
+    "htmlType": "",
+    "validations": "",
+    "searchable": false,
+    "fillable": false,
+    "primary": true,
+    "inForm": false,
+    "inIndex": true
+}, {
+    "fieldInput": "title:string,65",
+    "htmlType": "text",
+    "validations": "required",
+    "searchable": true,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "subtitle:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+},{
+    "fieldInput": "intro:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+},{
+    "fieldInput": "requirement_id:integer:unsigned",
+    "htmlType": "number",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+},{
+    "fieldInput": "duty_id:integer:unsigned",
+    "htmlType": "number",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+},{
+    "fieldInput": "job_overview:text",
+    "htmlType": "textarea",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}
+
+]

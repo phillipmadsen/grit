@@ -1,0 +1,169 @@
+[{
+    "fieldInput": "id:increments",
+    "htmlType": "",
+    "validations": "",
+    "searchable": false,
+    "fillable": false,
+    "primary": true,
+    "inForm": false,
+    "inIndex": true
+}, {
+    "fieldInput": "is_published:boolean",
+    "htmlType": "toggle-switch",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "is_published:boolean",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "layout:string",
+    "htmlType": "select:frontend.layout.default,frontend.layout.list,frontend.layout.right-sidebar,frontend.layout.left-sidebar,frontend.layout.fullwidth",
+    "validations": "",
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "title:string,65",
+    "htmlType": "text",
+    "validations": "required",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "subtitle:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "lang:string,20",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false
+}, {
+    "fieldInput": "excerpt:text",
+    "htmlType": "textarea",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "content:text",
+    "htmlType": "textarea",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "slug:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "meta_title:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "meta_keywords:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "meta_description:text",
+    "htmlType": "textarea",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "fb_title:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "gp_title:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "path:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "file_name:string:nullable",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "file_size:integer:unsigned",
+    "htmlType": "number",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false
+}, {
+    "fieldInput": "updated_at:dateTime",
+    "htmlType": "date",
+    "validations": "",
+    "searchable": false,
+    "fillable": true,
+    "primary": false,
+    "inForm": false,
+    "inIndex": true
+}]

@@ -1,0 +1,67 @@
+@extends('backend/layout/clip')
+
+@section('topscripts')
+
+@endsection
+
+@section('pagetitle')
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- start: PAGE TITLE & BREADCRUMB -->
+            <ol class="breadcrumb">
+            <li><a href="{!! url(getLang() . '/admin') !!}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li>$MODEL_NAME_PLURAL$</li>
+            <li class="active">Edit $MODEL_NAME$</li>
+            </ol>
+            <div class="page-header">
+                    <h1>Edit $MODEL_NAME$ </h1>
+            </div> <!-- end: PAGE TITLE & BREADCRUMB -->
+        </div>
+    </div>
+    <div class="clearfix"></div>
+@endsection
+
+@section('content')
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="clip-stats"></i>
+                Edit $MODEL_NAME$
+                <div class="panel-tools">
+                    <a class="btn btn-xs btn-link panel-collapse collapses" href="#"> </a>
+                    <a class="btn btn-xs btn-link panel-config" href="#panel-config" data-toggle="modal"> <i class="fa fa-wrench"></i> </a>
+                    <a class="btn btn-xs btn-link panel-refresh" href="#"> <i class="fa fa-refresh"></i> </a>
+                    <a class="btn btn-xs btn-link panel-close" href="#"> <i class="fa fa-times"></i> </a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                    <div class="space12">
+                        <div class="btn-group btn-group-lg">
+                            <a class="btn btn-default " href="{!! langRoute('admin.$ROUTES_AS_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') !!}">
+                                $MODEL_NAME_PLURAL$
+                            </a>
+                            <a class="btn btn-default active" href="javascript:;">
+                             <i class="fa fa-plus"></i>  Edit $MODEL_NAME$
+                            </a>
+                        </div>
+                    </div>
+
+                @include('core-templates::common.errors')
+
+                <div class="row">
+                    {!! Form::model($$MODEL_NAME_CAMEL$, ['route' => [getLang().'.admin.$ROUTES_AS_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.update', $$MODEL_NAME_CAMEL$->id], 'method' => 'patch']) !!}
+
+                    @include('backend.$ROUTES_AS_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.fields')
+
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
