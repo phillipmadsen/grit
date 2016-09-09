@@ -52,8 +52,12 @@
 @section('sidebar')@endsection
 
 @section('content')
-<!-- Content
-============================================= -->
+<!-- Content  ============================================= -->
+
+<style>
+    /*.product-desc, .product {  border: 1px solid black; }*/
+</style>
+
 <section id="content">
 
     <div class="content-wrap">
@@ -67,9 +71,10 @@
                 @foreach($new_products as $product)
                     @foreach($product->prices as $price)
                     <div class="product clearfix" data-product-id="product-{{$product->id}}">
-                        <div class="product-image">
+                        <div class="product-image slide flex-active-slide">
 
-                            <a href="#"><img class="img-responsive" src="{{ $product->thumbnail }}" alt="{!! $product->slug !!}">
+                            <a href="#">
+                                <img class="img-responsive" src="{{ $product->thumbnail }}" alt="{!! $product->slug !!}">
                                 {!! $product->created_at >= Carbon\Carbon::now()->subweek() ? '<span class="sale-flash">NEW</span>' : '' !!}
                             </a>
                             <a href="#"><img class="img-responsive" src="{{ $product->thumbnail2 }}" alt="{{ $product->slug }} image 2"></a>
@@ -77,20 +82,19 @@
                             <div class="sale-flash">50% Off*</div>
                             @endif
                             <div class="product-overlay">
-                                <a href="{{ $product->options->count() ? url(getLang().'/product/'.$product->id.'-'.Str::slug($product->name).'/show') : url(getLang().'/cart/add/'.$product->id.'/?qty=1') }}" class="add-to-cart">
+                                <a href="{{ $product->options->count() ? url(getLang().'/product/'.$product->id.'-'. Str::slug($product->name) .'/show') : url(getLang().'/cart/add/'.$product->id.'/?qty=1') }}" class="add-to-cart">
                                     <i class="icon-shopping-cart"></i><span> Add to Cart</span>
                                 </a>
                               {{--   <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a> --}}
                             </div>
                         </div>
 
-
-
+                        {{--@include('frontend.shop.partials.shop.slidegrid')--}}
 
                          <br>
 
                         <div class="product-desc">
-                            <div class="product-title"><h3><a href="{!! url(getLang().'/product/'. Str::slug($product->name).'/show') !!}">
+                            <div class="product-title"><h3><a href="{!! url(getLang().'/product/'. $product->slug .'/show') !!}">
                             {{ str_limit($product->name,30,' ...') }}
                             </a></h3></div>
                             @if($product->promo)
@@ -101,14 +105,14 @@
                             <div class="product-price">{!! $price->price !!}</div>
                             @endif
 
-                            {{ str_limit(htmlspecialchars_decode(strip_tags($product->details)),45,' ...') }}
+                            {{--{{ str_limit(htmlspecialchars_decode(strip_tags($product->details)),130,' ...') }}--}}
 
                             @if($product->rating)
                             <div class="product-rating">
-                                <i class="icon-star3"></i>
-                                <i class="icon-star3"></i>
-                                <i class="icon-star3"></i>
-                                <i class="icon-star3"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
                                 <i class="icon-star-half-full"></i>
                             </div>
                             @endif
@@ -128,7 +132,7 @@
 <div class="line"></div>
 
 
-@include('frontend.shop.partials.shop.bestsellers')
+{{--@include('frontend.shop.partials.shop.bestsellers')--}}
 
 @endsection
 

@@ -11,14 +11,16 @@ use Faker\Factory as Faker;
 class DatabaseSeeder extends Seeder {
 
 
-        if (App::environment() === 'production') {
-            exit('I just stopped you from getting fired. Love Phil');
-        }
+
 
     /**
      * Run the database seeds.
      */
     public function run() {
+
+        if (App::environment() === 'production') {
+            exit('I just stopped you from getting fired. Love Phil');
+        }
 
         Model::unguard();
 
@@ -54,7 +56,7 @@ class DatabaseSeeder extends Seeder {
 
         $this->call('ProductsTableSeeder');
         $this->call('PricingTableSeeder');
-        $this->call('PriceProductTableSeeder');
+     //   $this->call('PriceProductTableSeeder');
         $this->call('CategoryProductTableSeeder');
 
         Model::reguard();

@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Exceptions;
+namespace app\Exceptions;
 
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -15,11 +13,7 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-
-    private $sentryID;
-
-
-     protected $dontReport = [
+    protected $dontReport = [
         HttpException::class,
     ];
 
@@ -31,26 +25,10 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $e
      * @return void
      */
-    //    public function report(Exception $e)
-    // {
-    //     return parent::report($e);
-    // }
-
     public function report(Exception $e)
     {
-//        if ($this->shouldReport($e)) {
-//            // bind the event ID for Feedback
-//            $this->sentryID = app('sentry')->captureException($e);
-//        }
-//        parent::report($e);
-
-        if ($this->shouldReport($e)) {
-            app('sentry')->captureException($e);
-        }
-        parent::report($e);
-
+        return parent::report($e);
     }
-
 
     /**
      * Render an exception into an HTTP response.
@@ -59,27 +37,8 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $e
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e) {
-         if (config('app.debug') && ! $request->ajax()) {
-             $whoops = new \Whoops\Run;
-             $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-
-             return $whoops->handleException($e);
-
-         }
-         if ($e instanceof ModelNotFoundException)
-        {
-            // Custom logic for model not found...
-        }
-
-
-
-//        return response()->view('errors.500', [
-//            'sentryID' => $this->sentryID,
-//        ], 500);
-
+    public function render($request, Exception $e)
+    {
         return parent::render($request, $e);
     }
-
-
 }

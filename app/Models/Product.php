@@ -3,24 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use EloquentJoins\ModelTrait as EloquentJoinsModelTrait;
+
 
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
 class Product extends Model implements SluggableInterface
 {
-    use EloquentJoinsModelTrait;
-    use \EloquentRelations\HasManySymmetricTrait;
-    use SluggableTrait;
 
-    public function sluggable() {
-        return [
-            'slug' => [
-                'source' => 'name',
-            ]
-            ];
-    }
+    use SluggableTrait;
 
     /**
      * @var string

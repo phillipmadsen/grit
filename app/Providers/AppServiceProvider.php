@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if($this->app->environment() == 'local') {
             $this->app->register('\Laracademy\Generators\GeneratorsServiceProvider');
-     //       $this->app->register('\Devlob\Generators\DevlobGeneratorsServiceProvider');
+          //  $this->app->register('\GrahamCampbell\Exceptions\ExceptionsServiceProvider');
         }
     }
 }

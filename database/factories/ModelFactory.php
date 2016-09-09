@@ -10,6 +10,7 @@
 | database. Just tell the factory how a default model should look.
 |
 */
+use Carbon\Carbon;
 
 
 $factory->define(App\Models\AlbumPhoto::class, function (Faker\Generator $faker) {
@@ -56,24 +57,16 @@ $factory->define(App\Models\Article::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Models\BaseModel::class, function (Faker\Generator $faker) {
-    return [
-    ];
-});
-
 $factory->define(App\Models\Cart::class, function (Faker\Generator $faker) {
-    $users = \App\Models\User::all()->toArray();
-    $products = \App\Models\Product::all()->toArray();
+    $users = array_pluck(\App\Models\User::all(), 'id');
+    $products = array_pluck(\App\Models\Product::all(), 'id');
     return [
-        'user_id' =>  function () {
-            return factory(App\Models\User::class)->create()->id;
-        } ,
-        'product_id' =>  function () {
-            return factory(App\Models\Product::class)->create()->id;
-        } ,
-        'amount' =>  $faker->randomNumber() ,
-        'options' =>  $faker->word ,
+        'user_id' => $faker->randomElement($users),
+        'product_id' => $faker->randomElement($products),
+        'amount' =>  $faker->randomFloat(2, 100, 500),
+        'options' =>  $faker->word,
     ];
+
 });
 
 $factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
@@ -324,27 +317,6 @@ $factory->define(App\Models\PhotoGallery::class, function (Faker\Generator $fake
     ];
 });
 
-// $product = factory(App\Models\Price::class)->create();
-
-$factory->define(App\Models\Price::class, function (Faker\Generator $faker) {
-
-
-    $product =  App\Models\Product::all()->last();
-
-    return [
-        'product_id' => $product->id,
-        'price' => $faker->randomFloat(2, 100, 500),
-        'model' =>  $faker->word ,
-        'sku' => $faker->bothify('??-##??-####'),
-//        'upc' =>  $faker->ean13,
-        'upc' => '636343' . str_random(6),
-        'quantity' =>  $faker->numberBetween(6, 774),
-        'details' =>  $faker->word ,
-        'deleted_at' =>  null,
-    ];
-});
-
-
 $factory->define(App\Models\PriceProduct::class, function ($faker) {
     $products = array_pluck(\App\Models\Product::all(), 'id');
     $prices = array_pluck(\App\Models\price::all(), 'id');
@@ -356,21 +328,41 @@ $factory->define(App\Models\PriceProduct::class, function ($faker) {
     ];
 });
 
+// $product = factory(App\Models\Price::class)->create();
+
+$factory->define(App\Models\Price::class, function (Faker\Generator $faker) {
+    $product =  App\Models\Product::all()->last();
+
+    return [
+        'product_id' => $product->id,
+        'price' => $faker->randomFloat(2, 100, 500),
+        'model' =>  $faker->word ,
+        'sku' => $faker->bothify('??-##??-####'),
+//        'upc' =>  $faker->ean13,
+        'upc' => '636343' . str_random(6),
+        'quantity' =>  $faker->numberBetween(6, 774),
+        'details' =>  $faker->word ,
+
+    ];
+});
+
+//str_slug($name .),
+
 
 $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
-
+    $category_id =  \App\Models\Category::all()->random(1);
     $status = ['Online','Offline','Removed', 'Archived','Discontinued'];
     $office_status = ['Draft','Review','inDesign','inProof','inProcess','Hidden','Deleted', 'Live','Removed'];
     $availability = ['Available','InStock','OnHold','OnBackorder','PreOrders','PromoActive','SoldOut','Discontinued'];
+    $name = $faker->catchPhrase;
     return array(
         'status' => $faker->randomElement($status),
-
         'office_status' =>  $faker->randomElement($office_status),
         'availability' => $faker->randomElement($availability),
-        'slug' =>  $faker->word,
+        'slug' =>  Str::slug($name),
         'ispromo' =>  $faker->boolean($chanceOfGettingTrue = 50),
         'is_published' =>  $faker->boolean($chanceOfGettingTrue = 50),
-        'name' =>  $faker->word,
+        'name' =>  $name,
         'subtitle' =>  $faker->word ,
         'manufacturer' =>  $faker->word ,
         'details' =>  $faker->paragraph,
@@ -385,17 +377,27 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
         'facebook_title' =>  $faker->word ,
         'google_plus_title' =>  $faker->word ,
         'twitter_title' =>  $faker->word ,
-        'lang' =>  $faker->word ,
-        'deleted_at' =>  NULL,
-        'category_id' => function () {
-
-            $product =  App\Models\Product::all()->last();
-            return  CategoryProduct::create(['category_id' => $product->id, 'product_id' => $product->id]);
-        }
-
-
+        'lang' =>  'en',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+        //'category_id' => $category_id
     );
 });
+
+
+$factory->define(App\Models\Cart::class, function (Faker\Generator $faker) {
+    $users = array_pluck(\App\Models\User::all(), 'id');
+    $products = array_pluck(\App\Models\Product::all(), 'id');
+    return [
+        'user_id' => $faker->randomElement($users),
+        'product_id' => $faker->randomElement($products),
+        'amount' =>  $faker->randomFloat(2, 100, 500),
+        'options' =>  $faker->word,
+    ];
+
+});
+
+
 
 $factory->define(App\Models\ProductFeature::class, function (Faker\Generator $faker) {
     return [

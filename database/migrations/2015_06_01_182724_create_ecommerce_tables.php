@@ -124,6 +124,7 @@ class CreateEcommerceTables extends Migration
 
             $table->timestamps();
             $table->engine = 'InnoDB';
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::create('options', function (Blueprint $table)
@@ -176,7 +177,7 @@ class CreateEcommerceTables extends Migration
         Schema::create('product_album', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('product_id')->unsigned()->index();
             $table->string('photo_src');
             $table->string('alt')->nullable();
             $table->string('caption',60)->nullable();
@@ -195,13 +196,14 @@ class CreateEcommerceTables extends Migration
         Schema::create('reviews', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned()->index();
             $table->string('name');
             $table->string('email');
             $table->string('review');
             $table->rememberToken();
             $table->timestamps();
             $table->engine = 'InnoDB';
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::create('ecom_pages', function (Blueprint $table) {
@@ -211,17 +213,17 @@ class CreateEcommerceTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('price_product', function (Blueprint $table) {
-
-            $table->unsignedInteger('price_id');
-            $table->unsignedInteger('product_id');
-            $table->timestamps();
-            $table->engine = 'InnoDB';
-            $table->primary(['price_id', 'product_id']);
-            $table->foreign('price_id')->references('id')->on('prices')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
-
-        });
+//        Schema::create('price_product', function (Blueprint $table) {
+//
+//            $table->unsignedInteger('price_id');
+//            $table->unsignedInteger('product_id');
+//            $table->timestamps();
+//            $table->engine = 'InnoDB';
+//            $table->primary(['price_id', 'product_id']);
+//            $table->foreign('price_id')->references('id')->on('prices')->onUpdate('cascade')->onDelete('cascade');
+//            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+//
+//        });
 
 
         Schema::create('combos', function (Blueprint $table)
