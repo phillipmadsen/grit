@@ -1,8 +1,8 @@
 <?php
 
-namespace Fully\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Fully\Repositories\Faq\FaqInterface;
+use App\Repositories\Faq\FaqInterface;
 
 /**
  * Class FaqController.

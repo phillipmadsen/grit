@@ -1,6 +1,6 @@
 <?php
 
-namespace Fully\Console\Commands;
+namespace App\Console\Commands;
 
 use Schema;
 use Sentinel;
@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 /**
  * Class AppCommand.
  *
- * @author Sefa Karagöz <karagozsefa@gmail.com>
+ * @author Phillip Madsen <contact@affordableprogrammer.com>
  */
 class AppCommand extends Command
 {
@@ -46,32 +46,51 @@ class AppCommand extends Command
     {
 
         // drop tables
+        Schema::dropIfExists('activations');
         Schema::dropIfExists('articles');
         Schema::dropIfExists('articles_tags');
+        Schema::dropIfExists('blog_comments');
+        Schema::dropIfExists('cart');
         Schema::dropIfExists('categories');
+        Schema::dropIfExists('category_product');
+        Schema::dropIfExists('coupons');
+        Schema::dropIfExists('faqs');
         Schema::dropIfExists('form_posts');
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('logs');
+        Schema::dropIfExists('maillist');
+        Schema::dropIfExists('menus');
+        Schema::dropIfExists('messages');
         Schema::dropIfExists('migrations');
         Schema::dropIfExists('news');
+        Schema::dropIfExists('option_values');
+        Schema::dropIfExists('options');
+        Schema::dropIfExists('order_product');
+        Schema::dropIfExists('orders');
         Schema::dropIfExists('pages');
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('payment');
+        Schema::dropIfExists('persistences');
         Schema::dropIfExists('photo_galleries');
+        Schema::dropIfExists('photos');
+        Schema::dropIfExists('product_album');
+        Schema::dropIfExists('product_features');
+        Schema::dropIfExists('product_variants');
+        Schema::dropIfExists('products');
+        Schema::dropIfExists('projects');
+        Schema::dropIfExists('reminders');
+        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('role_users');
+        Schema::dropIfExists('roles');
+        Schema::dropIfExists('sections');
         Schema::dropIfExists('settings');
         Schema::dropIfExists('sliders');
+        Schema::dropIfExists('sub_categories');
+        Schema::dropIfExists('taggable_taggables');
+        Schema::dropIfExists('taggable_tags');
         Schema::dropIfExists('tags');
-        Schema::dropIfExists('activations');
-        Schema::dropIfExists('persistences');
-        Schema::dropIfExists('reminders');
-        Schema::dropIfExists('roles');
-        Schema::dropIfExists('role_users');
         Schema::dropIfExists('throttle');
+        Schema::dropIfExists('userinfo');
         Schema::dropIfExists('users');
-        Schema::dropIfExists('menus');
-        Schema::dropIfExists('maillist');
-        Schema::dropIfExists('faqs');
-        Schema::dropIfExists('projects');
         Schema::dropIfExists('videos');
-        Schema::dropIfExists('logs');
 
         $this->comment('=====================================');
         $this->comment('');
@@ -192,7 +211,11 @@ class AppCommand extends Command
                 $this->error('Password is invalid. Please try again.');
             }
 
+            $username = 'phillipmadsen';
             // Store the password
+            $this->userData['isAdmin'] = 1;
+            $this->userData['username'] = $username;
+
             $this->userData['password'] = $password;
         } while (!$password);
     }

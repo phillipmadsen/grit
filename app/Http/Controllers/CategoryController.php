@@ -1,26 +1,23 @@
 <?php
 
-namespace Fully\Http\Controllers;
+namespace App\Http\Controllers;
 
+use App\Repositories\Article\ArticleInterface;
+use App\Repositories\Category\CategoryInterface;
+use App\Repositories\Category\CategoryRepository as Category;
+use App\Repositories\Tag\TagInterface;
+use App\Services\Pagination;
 use Illuminate\Http\Request;
-
-use Illuminate\Database\Eloquent\Model;
-
-
-use Fully\Services\Pagination;
-use Fully\Repositories\Tag\TagInterface;
-use Fully\Repositories\Article\ArticleInterface;
-use Fully\Repositories\Tag\TagRepository as Tag;
-use Fully\Repositories\Category\CategoryInterface;
-use Fully\Repositories\Article\ArticleRepository as Article;
-use Fully\Repositories\Category\CategoryRepository as Category;
-
-use Fully\Models\Product;
+use App\Models\Product;
+use App\Models\Section;
+use App\Models\Cart;
+use \Illuminate\Database\Eloquent\Collection;
+use App\Ecommerce\helperFunctions;
 
 /**
  * Class CategoryController.
  *
- * @author phillip madsen <contact@affordableprogrammer.com>
+ * @author Phillip Madsen <contact@affordableprogrammer.com>
  */
 class CategoryController extends Controller
 {
@@ -55,5 +52,56 @@ class CategoryController extends Controller
         $categories = Pagination::makeLengthAware($pagiData->items, $pagiData->totalItems, $this->perPage);
 
         return view('frontend.category.index', compact('articles', 'tags', 'categories'));
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show($id, Request $request)
+    {
+
+        // $category = Category::findOrFail($id);
+        // $posts = $category->posts()->orderBy('creation_date', 'DESC')->paginate(10);
+        //
+        $category = Category::find($id);
+        if (strtoupper($request->sort) == 'NEWEST') {
+            $products = $category->products()->orderBy('created_at', 'desc')->paginate(40);
+        } elseif (strtoupper($request->sort) == 'HIGHEST') {
+            $products = $category->products()->orderBy('price', 'desc')->paginate(40);
+        } elseif (strtoupper($request->sort) == 'LOWEST') {
+            $products = $category->products()->orderBy('price', 'asc')->paginate(40);
+        } else {
+            $products = $category->products()->paginate(40);
+        }
+
+        helperFunctions::getPageInfo($sections,$cart,$total);
+
+        return view('frontend.ecom.category', compact('sections', 'cart', 'total', 'category', 'products'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'section_id' => 'required'
+        ]);
+        Category::create($request->all());
+        return \Redirect('/admin/categories')->with([
+            'flash_message' => 'Category successfully Created'
+        ]);
+    }
+
+    public function edit($id, Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'section_id' => 'required'
+        ]);
+        Category::find($id)->update($request->all());
+        return \Redirect()->back()->with([
+            'flash_message' => 'Category Successfully Edited'
+        ]);
     }
 }

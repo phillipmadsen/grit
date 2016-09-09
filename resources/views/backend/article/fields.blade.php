@@ -13,39 +13,13 @@
                         <div id="panel_tab_article_content" class="tab-pane active">
                             <div class="container-fluid">
                                 <div class="row-fluid">
-                                    <div class="col-md-6">
 
-
-                            {{--             <!-- Image -->
-                                        <div class="fileinput fileinput-new control-group ">
-
-                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="max-width: 500px; max-height: 400px;width: 100%;">
-                                            </div>
-
-                                        </div>
-                                        <hr /> --}}
-
- {{--  <!-- Tag -->
-    <div class="col-md-4 control-group {!! $errors->has('tag') ? 'has-error' : '' !!}">
-        <label class="control-label" for="title">Tag</label>
-
-        <div class="controls">
-            {!! Form::text('tag', null, array('class'=>'form-control', 'id' => 'tag', 'placeholder'=>'Tag', 'value'=>Input::old('tag'))) !!}
-            @if ($errors->first('tag'))
-            <span class="help-block">{!! $errors->first('tag') !!}</span>
-            @endif
-        </div>
-    </div>
- --}}
-
-
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-10">
                                         <div class="row">
 
-{{--
+
                                             <!-- Category -->
-                                            <div class="col-md-3 control-group {!! $errors->has('category') ? 'error' : '' !!}">
+                                            <div class="col-md-6 control-group {!! $errors->has('category') ? 'error' : '' !!}">
                                                 <label class="control-label" for="title">Category</label>
                                                 <div class="controls">
                                                     {!! Form::select('category', $categories, null, array('class' => 'form-control', 'value'=>Input::old('category'))) !!}
@@ -53,21 +27,13 @@
                                                     <span class="help-block">{!! $errors->first('category') !!}</span>
                                                     @endif
                                                 </div>
-                                            </div> --}}
+                                            </div>
 
-
-	                                        <!-- Author Id Field -->
-{{--<div class="form-group col-sm-3">--}}
-    {{--{!! Form::label('user_id', 'Author:') !!}--}}
-    {{--{!! Form::select('user', $users, null, array('class' => 'form-control', 'value'=>Input::old('user'))) !!}--}}
-{{--{{ Form::select('users', App\Models\User::where('user_id', '=', $article->id)->lists('name', 'id')), $users, array('class' => 'form-control') }}--}}
-
-{{--</div>--}}
 
 
 	                                        <!-- Published -->
                                             <!-- 'bootstrap / Toggle Switch is_published Field' -->
-                                            <div class="form-group col-sm-2 {!! $errors->has('is_published') ? 'has-error' : '' !!}">
+                                            <div class="form-group col-sm-3 {!! $errors->has('is_published') ? 'has-error' : '' !!}">
                                                 {!! Form::label('is_published', 'PUBLISHED:') !!}
                                                 <label class="checkbox-inline">
                                                 {!! Form::checkbox('is_published', 1, true,  ['data-toggle' => 'toggle']) !!}
@@ -98,9 +64,9 @@
 
                                         <div class="row">
                                             <!-- Excerpt Field -->
-                                            <div class="form-group ">
+                                            <div class="form-group  col-md-8">
                                                 {!! Form::label('excerpt', 'Excerpt:') !!}
-                                                {!! Form::textarea('excerpt',null, ['class' => 'form-control', 'rows' => '5', 'value'=>Input::old('excerpt')]) !!}
+                                                {!! Form::textarea('excerpt', null, ['class' => 'form-control summernote',  'value'=>Input::old('excerpt')]) !!}
                                             </div>
 
                                         </div>
@@ -118,37 +84,22 @@
                                 </div>
                             </div>
                         </div>
+
                         <div id="panel_tab_header_image" class="tab-pane">
                         <div class="container-fluid">
                                 <div class="row-fluid">
 
 
 
-{{--
 
-	                                <div class="fileinput fileinput-new control-group {!! $errors->has('image') ? 'has-error' : '' !!}" data-provides="fileinput">
-		                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-		                                <div>
-			                                <span class="btn btn-default btn-file">
-				                                <span class="fileinput-new">Select image</span>
-				                                <span class="fileinput-exists">Change</span>
-				                                {!! Form::file('image', null, array('class'=>'form-control', 'id' => 'image', 'placeholder'=>'Image', 'value'=>Input::old('image'))) !!}
-				                                @if ($errors->first('image'))
-					                                <span class="help-block">{!! $errors->first('image') !!}</span>
-				                                @endif </span>
-			                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a> </div>
-	                                </div>
-	                                <br> --}}
-{{-- 2000 x 1324 pixels
-1258 x 833 pixels
-860 x 570 pixels --}}
 
-	                                <h2>{!! $article->title !!}}</h2>
+
 
         <div class="form-group">
+
             <div class="col-sm-12 ">
                 <label>
-                    Image Upload
+                    Image Upload for -- {!! $article->title !!}
                 </label>
                 <div class="fileupload fileupload-new  control-group {!! $errors->has('image') ? 'has-error' : '' !!}" data-provides="fileupload">
                     <div class="fileupload-new thumbnail" style="width: 1140px; height: 600px;">
@@ -168,17 +119,17 @@
             </div>
         </div>
 
+    {!! Form::text('path', null, ['class' => 'form-control hidden']) !!}
+  {!! Form::number('file_size', null, ['class' => 'form-control hidden']) !!}
 
                                         <hr />
 
 
 
-    {!! Form::text('path', null, ['class' => 'form-control hidden']) !!}
-
 
 <div class="clearfix"></div>
 
-    {!! Form::number('file_size', null, ['class' => 'form-control hidden']) !!}
+
 
 
 

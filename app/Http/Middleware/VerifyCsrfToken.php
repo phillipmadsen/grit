@@ -1,11 +1,25 @@
 <?php
 
-namespace Fully\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
-class VerifyCsrfToken extends BaseVerifier {
+class VerifyCsrfToken extends BaseVerifier
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
+     * @return mixed
+     */
+    // public function handle($request, Closure $next)
+    // {
+    //     return parent::handle($request, $next);
+    // }
+
 
     /**
      * Handle an incoming request.
@@ -16,10 +30,10 @@ class VerifyCsrfToken extends BaseVerifier {
      */
     public function handle($request, Closure $next)
     {
-            if($request->method() == 'POST')
-            {
-            return $next($request);
-            }
+        if($request->method() == 'POST')
+        {
+        	return $next($request);
+        }
 
         if ($request->method() == 'GET' || $this->tokensMatch($request))
         {
@@ -27,5 +41,6 @@ class VerifyCsrfToken extends BaseVerifier {
         }
         throw new TokenMismatchException;
     }
+
 
 }

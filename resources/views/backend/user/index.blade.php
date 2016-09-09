@@ -49,7 +49,7 @@
                 <div class="space12">
                     <div class="btn-group btn-group-lg">
                         <a class="btn btn-default active" href="javascript:;"> Articles </a>
-                        <a class="btn btn-default hidden-xs" href="{!! langRoute('admin.user.create') !!}"> <i class="fa fa-plus"></i> Add User </a>
+                        {{--<a class="btn btn-default hidden-xs" href="{!! langRoute('admin.user.create') !!}"> <i class="fa fa-plus"></i> Add User </a>--}}
 
                     </div>
                 </div>
@@ -60,43 +60,64 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Joined</th>
-                    <th>Last Login</th>
-                    <th>Action</th>
+                    <td>#</td>
+                    <td>Type</td>
+                    <td>Username</td>
+                    <td>Firstname</td>
+                    <td>Lastname</td>
+                    <td>Email</td>
+                    <td>Phone</td>
+                    <td>Country</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+
+                    {{--<th>Name</th>--}}
+                    {{--<th>Email</th>--}}
+                    {{--<th>Joined</th>--}}
+                    {{--<th>Last Login</th>--}}
+                    {{--<th>Action</th>--}}
                 </tr>
                 </thead>
                 <tbody>
                 @foreach( $users as $user )
                 <tr>
-                    <td> {!! link_to_route(getLang(). '.admin.user.edit', $user->first_name . " " . $user->last_name, $user->id, array( 'class' => 'btn btn-link btn-xs' )) !!} </td>
-                    <td>{!! $user->email !!}</td>
-                    <td>{!! $user->created_at !!}</td>
-                    <td>{!! $user->last_login !!}</td>
+                    {{--<td> {!! link_to_route(getLang(). '.admin.user.edit', $user->first_name . " " . $user->last_name, $user->id, array( 'class' => 'btn btn-link btn-xs' )) !!} </td>--}}
+                    {{--<td>{!! $user->email !!}</td>--}}
+                    {{--<td>{!! $user->created_at !!}</td>--}}
+                    {{--<td>{!! $user->last_login !!}</td>--}}
 
-                        <td>
-                            <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                <a href="{!! langRoute('admin.user.edit', array($user->id)) !!}" class="btn btn-xs btn-teal tooltips" data-placement="top" data-original-title="Edit">
-                                <i class="fa fa-edit"></i>
-                                </a>
-
-
-                                <a target="_blank" href="{!! langRoute('admin.user.show', array($user->id)) !!}" class="btn btn-xs btn-red tooltips"  data-placement="top" data-original-title="Preview on Site">
-                                <i class="fa fa-eye"></i>
-                                </a>
-
-                                <a href="{!! URL::route('admin.user.delete', array($user->id)) !!}" class="btn btn-xs btn-bricky tooltips" data-placement="top" data-original-title="Remove">
-                                <i class="fa fa-times fa fa-white"></i>
-                                </a>
-                            </div>
-                        </td>
+                        {{--<td>--}}
+                            {{--<div class="visible-md visible-lg hidden-sm hidden-xs">--}}
+                                {{--<a href="{!! langRoute('admin.user.edit', array($user->id)) !!}" class="btn btn-xs btn-teal tooltips" data-placement="top" data-original-title="Edit">--}}
+                                {{--<i class="fa fa-edit"></i>--}}
+                                {{--</a>--}}
 
 
+                                {{--<a target="_blank" href="{!! langRoute('admin.user.show', array($user->id)) !!}" class="btn btn-xs btn-red tooltips"  data-placement="top" data-original-title="Preview on Site">--}}
+                                {{--<i class="fa fa-eye"></i>--}}
+                                {{--</a>--}}
+
+                                {{--<a href="{!! URL::route('admin.user.delete', array($user->id)) !!}" class="btn btn-xs btn-bricky tooltips" data-placement="top" data-original-title="Remove">--}}
+                                {{--<i class="fa fa-times fa fa-white"></i>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</td>--}}
+
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->isAdmin == 1 ? 'Admin' : 'User' }}</td>
+                    <td>{{ $user->username }}</td>
+                    <td>{{ $user->userInfo->firstname }}</td>
+                    <td>{{ $user->userInfo->lastname }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->userInfo->phone }}</td>
+                    <td>{{ $user->userInfo->country }}</td>
+                    <td><a href="{{ url('/admin/user/'.$user->id.'/edit') }}" class="fa fa-pencil-square-o"></a></td>
+                    <td><a href="{{ url('/user/'.$user->id.'/delete') }}" class="fa fa-times {{ Auth::user()->id == $user->id ? 'not-active' : '' }}"></a></td>
                 </tr>
                 @endforeach
                 </tbody>
             </table>
+            {!! $users->render() !!}
         </div>
         @else
         <div class="alert alert-danger">No results found</div>
@@ -104,7 +125,7 @@
     </div>
     <div class="pull-left">
         <ul class="pagination">
-            {!! $users->render() !!}
+            {{--{!! $users->render() !!}--}}
         </ul>
     </div>
            </div>

@@ -1,8 +1,8 @@
 <?php
 
-namespace Fully\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Fully\Repositories\Project\ProjectInterface;
+use App\Repositories\Project\ProjectInterface;
 
 /**
  * Class ProjectController.

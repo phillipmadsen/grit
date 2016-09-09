@@ -102,7 +102,7 @@ rows
                      </div>
                      <div class="slide">
                         <img src="{!! asset('/frontend/images/product-overviews/hoop2/hoop-rotate.jpg') !!}" alt="rotating quilting hoop">
-                        <div class="flex-caption slider-caption-bg slider-caption-bg slider-caption-top-right"><strong>Fully Tilting and Rotating Hoop.</strong><br>
+                        <div class="flex-caption slider-caption-bg slider-caption-bg slider-caption-top-right"><strong>App Tilting and Rotating Hoop.</strong><br>
                            The full rotation and swivel of the hoop lets you work from all the angles and from any corner.
                         </div>
                      </div>

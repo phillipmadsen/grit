@@ -162,7 +162,7 @@ Rotary Cutting Accessories | The Grace Company
       </div>
       <!--Blades Intro
          ================================-->
-      <div class="section parallax nomargin clearfix" style="background-image: url ('{!! asset('/frontend/images/backgrounds/paven-light-blue.png') !!}'); padding:0px; background-repeat:repeat; border-top:2px solid #B14949;" data-stellar-background-ratio="0.4">
+      <div class="section parallax nomargin clearfix" style="background-image: url('{!! asset('/frontend/images/backgrounds/paven-light-blue.png') !!}'); padding:0px; background-repeat:repeat; border-top:2px solid #B14949;" data-stellar-background-ratio="0.4">
          <div class="container clearfix topmargin bottommargin">
             <div class="heading-block center nobottomborder">
                <h2 class="accent">TrueCut Rotary Blades</h2>

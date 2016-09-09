@@ -95,7 +95,7 @@ rows
 	<section style=" border-bottom:2px solid #B14949;">
 		<div class="container clearfix">
 			<div class="heading-block center topmargin bottommargin-sm">
-				<h2>Fully adjustable for your comfort</h2>
+				<h2>App adjustable for your comfort</h2>
 				<p class="before-heading">See your projects in a new angle</p>
 			</div>
 			<div class="row bottommargin-lg visible-md visible-lg">

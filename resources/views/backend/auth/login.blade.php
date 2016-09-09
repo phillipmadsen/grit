@@ -10,9 +10,9 @@
     </p>
     {{--  {!! Form::open(array('url' => '/admin/login', 'class' => 'form-login')) !!} --}}
 
-     {!! Form::open(array()) !!}
+     {!! Form::open([]) !!}
 
-    @if ($errors->has('login'))
+    @if($errors->has('login'))
     <div class="alert alert-danger">
         <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>{!! $errors->first('login', ':message') !!}
     </div>

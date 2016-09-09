@@ -4,7 +4,7 @@
 @section('title')
 User Account
 @parent
-@stop
+@endsection
 
 {{-- page level styles --}}
 @section('header_styles')
@@ -16,7 +16,7 @@ User Account
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/frontend/user_account.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datetimepicker/css/bootstrap-datetimepicker.css') }}">
 
-@stop
+@endsection
 
 {{-- Page content --}}
 @section('content')
@@ -254,7 +254,7 @@ User Account
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 {{-- page level scripts --}}
 @section('footer_scripts')
@@ -264,4 +264,4 @@ User Account
 <script type="text/javascript" src="{{ asset('assets/vendors/select2/select2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/vendors/datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/frontend/user_account.js') }}"></script>
-@stop
+@endsection

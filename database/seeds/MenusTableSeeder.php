@@ -17,9 +17,9 @@ class MenusTableSeeder extends Seeder {
         \DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
 
-        DB::table('menus')->insert(array(
+        DB::table('menus')->insert([
 
-            array(
+            [
                 'title'        => 'Home',
                 'icon_class'   => Null,
                 'url'          => '/',
@@ -31,8 +31,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'Sewing Machines',
                 'icon_class'   => Null,
                 'url'          => '/en/sewing-machines/qnique',
@@ -44,8 +44,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'Hand Quilting',
                 'icon_class'   => Null,
                 'url'          => '/en/hand-quilting/',
@@ -57,8 +57,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'Machine Frames',
                 'icon_class'   => Null,
                 'url'          => '/en/machine-frames/',
@@ -70,8 +70,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-                        array(
+            ],
+                        [
                 'title'        => 'Automation',
                 'icon_class'   => Null,
                 'url'          => '/en/automation/qct',
@@ -83,8 +83,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'TrueCut',
                 'icon_class'   => Null,
                 'url'          => '/en/truecut/',
@@ -96,8 +96,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'Community',
                 'icon_class'   => Null,
                 'url'          => '/en/community/',
@@ -109,8 +109,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'Blog',
                 'icon_class'   => Null,
                 'url'          => '/en/community/blog',
@@ -122,8 +122,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'News',
                 'icon_class'   => Null,
                 'url'          => '/en/community/news',
@@ -135,8 +135,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'Videos',
                 'icon_class'   => Null,
                 'url'          => '/en/community/video',
@@ -148,8 +148,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'Faq',
                 'icon_class'   => Null,
                 'url'          => '/en/community/faq',
@@ -161,8 +161,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-            array(
+            ],
+            [
                 'title'        => 'Contact Us',
                 'icon_class'   => Null,
                 'url'          => '/en/contact',
@@ -174,8 +174,8 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            ),
-             array(
+            ],
+             [
                 'title'        => 'Shop',
                 'icon_class'   => Null,
                 'url'          => '/en/shop',
@@ -187,7 +187,7 @@ class MenusTableSeeder extends Seeder {
                 'lang'         => 'en',
                 'created_at'   => new Datetime,
                 'updated_at'   => new Datetime
-            )
-        ));
+            ]
+        ]);
     }
 }

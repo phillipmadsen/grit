@@ -74,10 +74,10 @@
         <a class="btn btn-default active" href="javascript:;">
             Articles
         </a>
-        <a class="btn btn-default hidden-xs" href="{!! langURL('admin/article/create') !!}">
+        <a class="btn btn-default hidden-xs" href="{!! url(getLang().'/admin/article/create') !!}">
          <i class="fa fa-plus"></i>   Add Article
         </a>
-        <a class="btn btn-default" href="{!! langURL('admin/category/create') !!}">
+        <a class="btn btn-default" href="{!! url(getLang().'/admin/category/create') !!}">
             Add Category
         </a>
 
@@ -117,8 +117,7 @@
                                                    <i class="fa fa-eye"></i>
                                                 </a>
 
-                                        <a href="{!! URL::route('admin.article.delete', array($article->id)) !!}" class="btn btn-xs btn-bricky tooltips"
-                                            data-placement="top" data-original-title="Remove"><i class="fa fa-times fa fa-white"></i> </a>
+                                        <a href="{!! URL::route('admin.article.delete', array($article->id)) !!}" class="btn btn-xs btn-bricky tooltips" data-placement="top" data-original-title="Remove"><i class="fa fa-times fa fa-white"></i> </a>
                                     </div>
                                 </td>
                                 <td>
@@ -140,6 +139,8 @@
                 {!! $articles->render() !!}
             </ul>
         </div>
+
+
 
 
                                 </div>

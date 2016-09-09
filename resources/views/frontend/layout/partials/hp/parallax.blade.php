@@ -1,4 +1,4 @@
-<div class="section parallax nomargin notopborder dark" style="padding: 100px 0px; background-image: url({!! asset('/frontend/images/parallax/2.jpg') !!}); background-position: 50% -2.28281px;" data-stellar-background-ratio="0.3">
+<div class="section parallax nomargin notopborder dark" style="padding: 100px 0px; background-image: url('{!! asset('/frontend/images/parallax/2.jpg') !!}'); background-position: 50% -2.28281px;" data-stellar-background-ratio="0.3">
 	<div class="container clearfix">
 
 		<div class="emphasis-title center">

@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="panel-body">
-            {!! Form::open(array('action' => '\Fully\Http\Controllers\Admin\CategoryController@store' )) !!}
+            {!! Form::open(array('action' => '\App\Http\Controllers\Admin\CategoryController@store' )) !!}
             <!-- Title -->
             <div class="control-group {!! $errors->has('title') ? 'has-error' : '' !!}">
                 <label class="control-label" for="title">Category</label>

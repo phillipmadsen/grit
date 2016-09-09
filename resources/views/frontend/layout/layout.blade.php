@@ -148,5 +148,6 @@
 
 @yield('pp_footer_scripts')
 @yield('inlinejs')
+    @include('flash')
 </body>
 </html>

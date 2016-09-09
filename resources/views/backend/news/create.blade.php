@@ -37,7 +37,7 @@
     <br>
     <br>
     <div class="container">
-        {!! Form::open(array('action' => '\Fully\Http\Controllers\Admin\NewsController@store', 'files'=>true)) !!}
+        {!! Form::open(array('action' => '\App\Http\Controllers\Admin\NewsController@store', 'files'=>true)) !!}
         <!-- Title -->
         <div class="control-group {!! $errors->has('title') ? 'has-error' : '' !!}">
             <label class="control-label" for="title">Title</label>

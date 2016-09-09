@@ -15,16 +15,16 @@ class FaqsTableSeeder extends Seeder
 
         DB::table('faqs')->truncate();
 
-        DB::table('faqs')->insert(array(
-            array(
+        DB::table('faqs')->insert([
+            [
                 'question'   => 'Does Grace Company make the Qnique Quilter?',
                 'answer'     => 'Yes',
                 'order'      => 1,
                 'lang'       => 'en',
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
-            )
+            ]
 
-        ));
+        ]);
     }
 }

@@ -1,50 +1,50 @@
 <?php
 
-namespace Fully\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Fully\Models\Article;
-use Fully\Models\Category;
-use Fully\Models\Page;
-use Fully\Models\Faq;
-use Fully\Models\News;
-use Fully\Models\PhotoGallery;
-use Fully\Models\Project;
-use Fully\Models\Tag;
-use Fully\Models\Video;
-use Fully\Models\Menu;
-use Fully\Models\Slider;
-use Fully\Models\Setting;
-use Fully\Repositories\Article\ArticleRepository;
-use Fully\Repositories\Article\CacheDecorator as ArticleCacheDecorator;
-use Fully\Repositories\Category\CategoryRepository;
-use Fully\Repositories\Category\CacheDecorator as CategoryCacheDecorator;
-use Fully\Repositories\Page\PageRepository;
-use Fully\Repositories\Page\CacheDecorator as PageCacheDecorator;
-use Fully\Repositories\Faq\FaqRepository;
-use Fully\Repositories\Faq\CacheDecorator as FaqCacheDecorator;
-use Fully\Repositories\News\NewsRepository;
-use Fully\Repositories\News\CacheDecorator as NewsCacheDecorator;
-use Fully\Repositories\PhotoGallery\PhotoGalleryRepository;
-use Fully\Repositories\PhotoGallery\CacheDecorator as PhotoGalleryCacheDecorator;
-use Fully\Repositories\Project\ProjectRepository;
-use Fully\Repositories\Project\CacheDecorator as ProjectCacheDecorator;
-use Fully\Repositories\Tag\TagRepository;
-use Fully\Repositories\Tag\CacheDecorator as TagCacheDecorator;
-use Fully\Repositories\Video\VideoRepository;
-use Fully\Repositories\Video\CacheDecorator as VideoCacheDecorator;
-use Fully\Repositories\Menu\MenuRepository;
-use Fully\Repositories\Menu\CacheDecorator as MenuCacheDecorator;
-use Fully\Repositories\Slider\SliderRepository;
-use Fully\Repositories\Slider\CacheDecorator as SliderCacheDecorator;
-use Fully\Repositories\Setting\SettingRepository;
-use Fully\Repositories\Setting\CacheDecorator as SettingCacheDecorator;
-use Fully\Services\Cache\FullyCache;
+use App\Models\Article;
+use App\Models\Category;
+use App\Models\Page;
+use App\Models\Faq;
+use App\Models\News;
+use App\Models\PhotoGallery;
+use App\Models\Project;
+use App\Models\Tag;
+use App\Models\Video;
+use App\Models\Menu;
+use App\Models\Slider;
+use App\Models\Setting;
+use App\Repositories\Article\ArticleRepository;
+use App\Repositories\Article\CacheDecorator as ArticleCacheDecorator;
+use App\Repositories\Category\CategoryRepository;
+use App\Repositories\Category\CacheDecorator as CategoryCacheDecorator;
+use App\Repositories\Page\PageRepository;
+use App\Repositories\Page\CacheDecorator as PageCacheDecorator;
+use App\Repositories\Faq\FaqRepository;
+use App\Repositories\Faq\CacheDecorator as FaqCacheDecorator;
+use App\Repositories\News\NewsRepository;
+use App\Repositories\News\CacheDecorator as NewsCacheDecorator;
+use App\Repositories\PhotoGallery\PhotoGalleryRepository;
+use App\Repositories\PhotoGallery\CacheDecorator as PhotoGalleryCacheDecorator;
+use App\Repositories\Project\ProjectRepository;
+use App\Repositories\Project\CacheDecorator as ProjectCacheDecorator;
+use App\Repositories\Tag\TagRepository;
+use App\Repositories\Tag\CacheDecorator as TagCacheDecorator;
+use App\Repositories\Video\VideoRepository;
+use App\Repositories\Video\CacheDecorator as VideoCacheDecorator;
+use App\Repositories\Menu\MenuRepository;
+use App\Repositories\Menu\CacheDecorator as MenuCacheDecorator;
+use App\Repositories\Slider\SliderRepository;
+use App\Repositories\Slider\CacheDecorator as SliderCacheDecorator;
+use App\Repositories\Setting\SettingRepository;
+use App\Repositories\Setting\CacheDecorator as SettingCacheDecorator;
+use App\Services\Cache\FullyCache;
 
 /**
  * Class RepositoryServiceProvider.
  *
- * @author Sefa Karagöz <karagozsefa@gmail.com>
+ * @author Phillip Madsen <contact@affordableprogrammer.com>
  */
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -55,10 +55,10 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $app = $this->app;
 
-        //dd($app['config']->get('fully.cache'));
+        //dd($app['config']->get('grace.cache'));
 
         // article
-        $app->bind('Fully\Repositories\Article\ArticleInterface', function ($app) {
+        $app->bind('App\Repositories\Article\ArticleInterface', function ($app) {
 
             $article = new ArticleRepository(
                 new Article()
@@ -66,7 +66,7 @@ class RepositoryServiceProvider extends ServiceProvider
 
             //dd($app['config']->get('is_admin', false));
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $article = new ArticleCacheDecorator(
                     $article,
                     new FullyCache($app['cache'], 'articles')
@@ -77,13 +77,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // category
-        $app->bind('Fully\Repositories\Category\CategoryInterface', function ($app) {
+        $app->bind('App\Repositories\Category\CategoryInterface', function ($app) {
 
             $category = new CategoryRepository(
                 new Category()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $category = new CategoryCacheDecorator(
                     $category,
                     new FullyCache($app['cache'], 'categories')
@@ -94,13 +94,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // page
-        $app->bind('Fully\Repositories\Page\PageInterface', function ($app) {
+        $app->bind('App\Repositories\Page\PageInterface', function ($app) {
 
             $page = new PageRepository(
                 new Page()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $page = new PageCacheDecorator(
                     $page,
                     new FullyCache($app['cache'], 'pages')
@@ -111,13 +111,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // faq
-        $app->bind('Fully\Repositories\Faq\FaqInterface', function ($app) {
+        $app->bind('App\Repositories\Faq\FaqInterface', function ($app) {
 
             $faq = new FaqRepository(
                 new Faq()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $faq = new FaqCacheDecorator(
                     $faq,
                     new FullyCache($app['cache'], 'faqs')
@@ -128,13 +128,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // news
-        $app->bind('Fully\Repositories\News\NewsInterface', function ($app) {
+        $app->bind('App\Repositories\News\NewsInterface', function ($app) {
 
             $news = new NewsRepository(
                 new News()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $news = new NewsCacheDecorator(
                     $news,
                     new FullyCache($app['cache'], 'pages')
@@ -145,13 +145,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // photo gallery
-        $app->bind('Fully\Repositories\PhotoGallery\PhotoGalleryInterface', function ($app) {
+        $app->bind('App\Repositories\PhotoGallery\PhotoGalleryInterface', function ($app) {
 
             $photoGallery = new PhotoGalleryRepository(
                 new PhotoGallery()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $photoGallery = new PhotoGalleryCacheDecorator(
                     $photoGallery,
                     new FullyCache($app['cache'], 'photo_galleries')
@@ -162,13 +162,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // project
-        $app->bind('Fully\Repositories\Project\ProjectInterface', function ($app) {
+        $app->bind('App\Repositories\Project\ProjectInterface', function ($app) {
 
             $project = new ProjectRepository(
                 new Project()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $project = new ProjectCacheDecorator(
                     $project,
                     new FullyCache($app['cache'], 'projects')
@@ -179,13 +179,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // tag
-        $app->bind('Fully\Repositories\Tag\TagInterface', function ($app) {
+        $app->bind('App\Repositories\Tag\TagInterface', function ($app) {
 
             $tag = new TagRepository(
                 new Tag()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $tag = new TagCacheDecorator(
                     $tag,
                     new FullyCache($app['cache'], 'tags')
@@ -196,13 +196,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // video
-        $app->bind('Fully\Repositories\Video\VideoInterface', function ($app) {
+        $app->bind('App\Repositories\Video\VideoInterface', function ($app) {
 
             $video = new VideoRepository(
                 new Video()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $video = new VideoCacheDecorator(
                     $video,
                     new FullyCache($app['cache'], 'pages')
@@ -213,13 +213,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // menu
-        $app->bind('Fully\Repositories\Menu\MenuInterface', function ($app) {
+        $app->bind('App\Repositories\Menu\MenuInterface', function ($app) {
 
             $menu = new MenuRepository(
                 new Menu()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $menu = new MenuCacheDecorator(
                     $menu,
                     new FullyCache($app['cache'], 'menus')
@@ -230,13 +230,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // slider
-        $app->bind('Fully\Repositories\Slider\SliderInterface', function ($app) {
+        $app->bind('App\Repositories\Slider\SliderInterface', function ($app) {
 
             $slider = new SliderRepository(
                 new Slider()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $slider = new SliderCacheDecorator(
                     $slider,
                     new FullyCache($app['cache'], 'sliders')
@@ -247,13 +247,13 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         // setting
-        $app->bind('Fully\Repositories\Setting\SettingInterface', function ($app) {
+        $app->bind('App\Repositories\Setting\SettingInterface', function ($app) {
 
             $setting = new SettingRepository(
                 new Setting()
             );
 
-            if ($app['config']->get('fully.cache') === true && $app['config']->get('is_admin', false) == false) {
+            if ($app['config']->get('grace.cache') === true && $app['config']->get('is_admin', false) == false) {
                 $setting = new SettingCacheDecorator(
                     $setting,
                     new FullyCache($app['cache'], 'settings')

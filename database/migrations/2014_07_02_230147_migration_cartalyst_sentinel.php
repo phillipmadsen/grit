@@ -93,8 +93,11 @@ class MigrationCartalystSentinel extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email');
+            $table->string('username');
+            $table->string('email')->unique();
             $table->string('password');
+	$table->unsignedInteger('isAdmin')->default(0);
+            $table->rememberToken();
             $table->text('permissions')->nullable();
             $table->timestamp('last_login')->nullable();
             $table->string('first_name')->nullable();
@@ -102,7 +105,7 @@ class MigrationCartalystSentinel extends Migration
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique('email');
+
         });
     }
 

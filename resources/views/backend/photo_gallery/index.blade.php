@@ -1,10 +1,13 @@
-@extends('backend/layout/layout')
-@section('content')
+
+
+
+
+@extends('backend/layout/clip')
+
+@section('topscripts')
 <script type="text/javascript">
     $(document).ready(function () {
-
         $('#notification').show().delay(4000).fadeOut(700);
-
         // publish settings
         $(".publish").bind("click", function (e) {
             var id = $(this).attr('id');
@@ -28,17 +31,51 @@
         });
     });
 </script>
-<section class="content-header">
-    <h1> Photo Gallery
-        <small> | Control Panel</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="{!! url(getLang(). '/admin') !!}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Photo Gallery</li>
-    </ol>
-</section>
-<br><br>
-<div class="container">
+@endsection
+
+
+@section('pagetitle')
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- start: PAGE TITLE & BREADCRUMB -->
+            <ol class="breadcrumb">
+                <li><a href="{!! url(getLang() . '/admin') !!}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li class="active">Photo Gallery</li>
+
+            </ol>
+            <div class="page-header">
+                  <h1> Photo Gallery <small> | Control Panel</small> </h1>
+            </div>
+            <!-- end: PAGE TITLE & BREADCRUMB -->
+        </div>
+    </div>
+@endsection
+
+@section('content')
+<div class="container-fluid">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="clip-stats"></i>
+                Panel Data
+                <div class="panel-tools">
+                    <a class="btn btn-xs btn-link panel-collapse collapses" href="#"> </a>
+                    <a class="btn btn-xs btn-link panel-config" href="#panel-config" data-toggle="modal"> <i class="fa fa-wrench"></i> </a>
+                    <a class="btn btn-xs btn-link panel-refresh" href="#"> <i class="fa fa-refresh"></i> </a>
+                    <a class="btn btn-xs btn-link panel-close" href="#"> <i class="fa fa-times"></i> </a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div class="space12">
+                    <div class="btn-group btn-group-lg">
+                        <a class="btn btn-default active" href="javascript:;"> Menus </a>
+                        <a class="btn btn-default hidden-xs" href="{!! langRoute('admin.menu.create') !!}">
+                         <i class="fa fa-plus"></i> Add Link To Menu</a>
+                    </div>
+                </div>
+
     <div class="col-lg-10">
 
         @include('flash::message')
@@ -119,5 +156,24 @@
             {!! $photo_galleries->render() !!}
         </ul>
     </div>
+
+
+
+            </div>
+        </div>
+    </div>
 </div>
-@stop
+</div>
+@endsection
+
+@section('bottomscripts')
+    <script>
+        $(document).ready(function(){
+          //  $('.sidebar #categories').addClass('active-section');
+        });
+    </script>
+@endsection
+
+@section('clipinline')
+    TableData.init();
+@endsection

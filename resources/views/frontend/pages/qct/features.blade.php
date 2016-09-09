@@ -104,7 +104,7 @@ Quilter&#39;s Creative Touch Features| The Grace Company
 
                     <!--features
                                        =============================-->
-                                    <section class="clearfix"  style="background-image:URL({!! asset('/frontend/images/backgrounds/square_bg.png') !!}); background-repeat:repeat;">
+                                    <section class="clearfix"  style="background-image:URL('{!! asset('/frontend/images/backgrounds/square_bg.png') !!}'); background-repeat:repeat;">
                                         <div class="container topmargin" id="library" >
 
 
@@ -134,7 +134,7 @@ Quilter&#39;s Creative Touch Features| The Grace Company
                                        </section>
 <!-- Brien new stuff
 ================================-->
-                                                    <section class="clearfix"  style="background-image:URL({!! asset('/frontend/images/backgrounds/square_bg.png') !!}); background-repeat:repeat;">
+                                                    <section class="clearfix"  style="background-image:URL('{!! asset('/frontend/images/backgrounds/square_bg.png') !!}'); background-repeat:repeat;">
                                         <div class="container topmargin" id="panto">
 
 
@@ -162,7 +162,7 @@ Quilter&#39;s Creative Touch Features| The Grace Company
                                                </p>
                                            <div class="center bottommargin-sm"><a href="#topofpage" data-scrollto="#topofpage">Back to top</a></div>
                                        </section>
-                                                    <section class="clearfix"  style="background-image:URL({!! asset('/frontend/images/backgrounds/square_bg.png') !!}); background-repeat:repeat;">
+                                                    <section class="clearfix"  style="background-image:URL('{!! asset('/frontend/images/backgrounds/square_bg.png') !!}'); background-repeat:repeat;">
                                         <div class="container topmargin" id="quiltcad">
 
 
@@ -190,7 +190,7 @@ Quilter&#39;s Creative Touch Features| The Grace Company
                                                </p>
                                            <div class="center bottommargin-sm"><a href="#topofpage" data-scrollto="#topofpage">Back to top</a></div>
                                        </section>
-                                                    <section class="clearfix"  style="background-image:URL({!! asset('/frontend/images/backgrounds/square_bg.png') !!}); background-repeat:repeat;">
+                                                    <section class="clearfix"  style="background-image:URL('{!! asset('/frontend/images/backgrounds/square_bg.png') !!}'); background-repeat:repeat;">
                                         <div class="container topmargin" id="optimize">
 
 
@@ -218,7 +218,7 @@ Quilter&#39;s Creative Touch Features| The Grace Company
                                                </p>
                                            <div class="center bottommargin-sm"><a href="#topofpage" data-scrollto="#topofpage">Back to top</a></div>
                                        </section>
-                                                    <section class="clearfix"  style="background-image:URL({!! asset('/frontend/images/backgrounds/square_bg.png') !!}); background-repeat:repeat;">
+                                                    <section class="clearfix"  style="background-image:URL('{!! asset('/frontend/images/backgrounds/square_bg.png') !!}'); background-repeat:repeat;">
                                         <div class="container topmargin" id="record">
 
 
@@ -246,7 +246,7 @@ Quilter&#39;s Creative Touch Features| The Grace Company
                                                </p>
                                            <div class="center bottommargin-sm"><a href="#topofpage" data-scrollto="#topofpage">Back to top</a></div>
                                        </section>
-                                                    <section class="clearfix"  style="background-image:URL("{!! asset('/frontend/images/backgrounds/square_bg.png') !!}"); background-repeat:repeat;">
+                                                    <section class="clearfix"  style="background-image:URL('{!! asset('/frontend/images/backgrounds/square_bg.png') !!}'); background-repeat:repeat;">
                                         <div class="container topmargin" id="vl">
 
 

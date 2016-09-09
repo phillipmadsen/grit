@@ -79,3 +79,18 @@ function langRedirectRoute($route)
 {
     return Redirect::route(getLang().'.'.$route);
 }
+
+function FlashAlert($title = null, $message = null)
+{
+    $flash = app('App\Http\FlashAlert');
+    if (func_num_args() == 0) {
+        return $flash;
+    }
+
+    return $flash->info($title, $message);
+}
+
+
+
+
+

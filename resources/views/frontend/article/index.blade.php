@@ -33,12 +33,12 @@ rows
 
 @endsection
 
-@section('submenu')
+@section('submenu-off')
 @include('frontend.layout.partials.menu.submenu-items', ['items'=> $menu_blog->roots()])
 @endsection
 
 
-@section('slider')
+@section('slider-off')
 
 <section id="slider" class="slider-parallax swiper_wrapper clearfix">
 
@@ -117,12 +117,12 @@ rows
                             </a>
                             @else
 
-                            <img class="image_fade" src="http://www.placehold.it/860x400/EFEFEF/AAAAAA?text=no+image" style="border: 1px solid #bdc3c7;" alt="{!! $article->title !!} image" itemprop="image" />
- 
+                            <img class="image_fade" src="http://lorempixel.com/800/350/abstract/" style="border: 1px solid #bdc3c7;" alt="{!! $article->title !!} image" itemprop="image" />
+
                             @endif
                         </div>
                         <div class="entry-title">
-                            <a href="{!! URL::route('dashboard.article.show', array('slug'=>$article->slug)) !!}" itemprop="url" >
+                            <a href="{!! URL::route('dashboard.article.show', array('slug' => $article->slug)) !!}" itemprop="url" >
                                 <h1 itemprop="name headline">{!! $article->title !!}</h1>
                             </a>
                         </div>
@@ -152,14 +152,14 @@ rows
                                 @endif
                                 </span>
                             </li>
-                            <li><i class="icon-folder-open"></i> {!! $article->category[0]->title !!}   </li>
+                            {{-- <li><i class="icon-folder-open"></i> {!! $article->category[0]->title !!}   </li> --}}
 
                         </ul>
                         <div class="entry-content content" itemprop="articleBody">
                             {!! $article->excerpt !!}
                             <br />
                             <br />
-                            <a href="{!! URL::route('dashboard.article.show', ['slug'=>$article->slug]) !!}" class="more-link" itemprop="url">Read More</a>
+                            <a href="{!! URL::route('dashboard.article.show', ['slug' => $article->slug ]) !!}" class="more-link" itemprop="url">Read More</a>
                             <br />
                             <br />
                         </div>
@@ -170,7 +170,7 @@ rows
                 <!-- Pagination
                     ============================================= -->
                 <ul class="pager nomargin">
-                    {!! $articles->render() !!}
+                    {{-- {!! $articles->render() !!} --}}
                 </ul>
             </div>
             <!-- .postcontent end -->
@@ -196,4 +196,5 @@ rows
 @endsection
 
 @section('inlinejs')
+
 @endsection

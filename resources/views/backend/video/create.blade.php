@@ -53,7 +53,7 @@
     <div class="pull-right">
         <div id="msg"></div>
     </div>
-    {!! Form::open(array('action' => '\Fully\Http\Controllers\Admin\VideoController@store' )) !!}
+    {!! Form::open(array('action' => '\App\Http\Controllers\Admin\VideoController@store' )) !!}
 
     <!-- Type -->
     <label class="control-label" for="type">Type</label>

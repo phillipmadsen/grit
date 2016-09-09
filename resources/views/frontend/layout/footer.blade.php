@@ -132,7 +132,7 @@
                 </ul>
             </div>
             <div class="col-sm-4">
-                &copy; 2015 <a target="_blank" href="http://www.sefakaragoz.com">Sefa Karagöz</a> {!! trans('fully.all_rights_reserved') !!}.
+                &copy; 2015 <a target="_blank" href="http://www.sefakaragoz.com">Phillip Madsen</a> {!! trans('fully.all_rights_reserved') !!}.
                 <br>
                 <br>
                 <a target="_blank" href="https://www.digitalocean.com/?refcode=33a90ba86b5a">DigitalOcean</a>

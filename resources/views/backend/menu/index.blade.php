@@ -38,9 +38,6 @@
 
 @section('pagetitle')
 <div class="row">
-
-
-
     <div class="col-sm-12">
         <!-- start: PAGE TITLE & BREADCRUMB -->
         <ol class="breadcrumb">
@@ -72,14 +69,6 @@
             </div>
             <div class="panel-body">
 
-         <div class="space12">
-                    <div class="btn-group btn-group-lg">
-                        <a class="btn btn-default active" href="javascript:;"> Menus </a>
-                        <a class="btn btn-default hidden-xs" href="{!! langRoute('admin.menu.create') !!}">
-                         <i class="fa fa-plus"></i> Add Link To Menu</a>
-                    </div>
-                </div>
-
 
         @include('flash::message')
         <div class="pull-right">
@@ -88,7 +77,13 @@
 
             <div class="col-md-8">
 
-
+                <div class="space12">
+                    <div class="btn-group btn-group-lg">
+                        <a class="btn btn-default active" href="javascript:;"> Menus </a>
+                        <a class="btn btn-default hidden-xs" href="{!! langRoute('admin.menu.create') !!}">
+                         <i class="fa fa-plus"></i> Add Link To Menu</a>
+                    </div>
+                </div>
                 <br style="clear:both" />
                 <div class="dd" id="nestable">
                     {!! $menus !!}

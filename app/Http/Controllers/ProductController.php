@@ -1,100 +1,197 @@
 <?php
 
-namespace Fully\Http\Controllers;
+namespace App\Http\Controllers;
 
-
-use Fully\Helpers\Thumbnail;
-use Flash;
-use Fully\Http\Controllers\AppBaseController;
-use Fully\Http\Requests\CreateProductRequest;
-use Fully\Http\Requests\UpdateProductRequest;
-use Fully\Repositories\Category\CategoryInterface;
-use Fully\Repositories\Category\CategoryRepository as Category;
-use Fully\Repositories\ProductRepository;
+use App\Models\PriceProduct;
+use App\Repositories\Category\CategoryInterface;
+use App\Repositories\Category\CategoryRepository;
 use Illuminate\Http\Request;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
-use Fully\Logic\Image\ImageRepository;
-use Illuminate\Support\Facades\Input;
-use Fully\Models\ProductVariant;
-use Fully\Models\ProductFeature;
-use Fully\Models\Product;
-use Fully\Models\User;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\CategoryProduct;
+use App\Models\AlbumPhoto;
+use App\Models\Section;
+use App\Models\Cart;
+use App\Models\Option;
+use App\Models\OptionValue;
+use App\Models\ProductFeature;
+use App\Models\ProductVariant;
+use App\Models\OrderProduct;
+use App\Models\Price;
+use App\Models\Category;
 
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManager;
+use Illuminate\Database\Eloquent\Scope;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+//use Auth;
+use App;
+use Session;
+use \Illuminate\Database\Eloquent\Collection;
+use App\Ecommerce\helperFunctions;
 
-
-class ProductController extends AppBaseController
+class ProductController extends Controller
 {
 
-    private $productRepository;
-    private $model;
-    private $user;
-    protected $img;
-    protected $category;
 
-    /**
-     * @param ProductRepository $productRepo
-     * @param CategoryInterface $category
-     */
-    public function __construct(ProductRepository $productRepo, CategoryInterface $category, Product $model, User $user, ImageRepository $imageRepository)
+    public function index()
     {
-        $this->productRepository = $productRepo;
-        $this->category          = $category;
-        $this->model = $model;
-        $this->user = $user;
-        $this->image = $imageRepository;
 
+
+
+       // $products = Product::orderBy('name', 'asc')->take(6)->get();
+        $new_products = Product::orderBy('created_at', 'desc')->take(12)->get();
+        $get_best_sellers = OrderProduct::select('product_id', \DB::raw('COUNT(product_id) as count'))->groupBy('product_id')->orderBy('count', 'desc')->take(8)->get();
+        $best_sellers = [];
+        foreach ($get_best_sellers as $product) {
+            $best_sellers[] = $product->product;
+        }
+        //helperFunctions::getPageInfo($sections,$cart,$total);
+        return view('frontend.shop.index', compact('new_products', 'best_sellers', 'sections', 'cart', 'total'));
     }
 
-    /**
-     * Display a listing of the Product.
-     *
-     * @param  Request    $request
-     * @return Response
-     */
-    public function index(Request $request)
+    public function show($id, $slug = Null)
     {
-        $this->productRepository->pushCriteria(new RequestCriteria($request));
-        $products = $this->productRepository->paginate(20);
+         $product = Product::findBySlugOrIdOrFail($id);
 
-        return view('backend.products.index')
-            ->with('products', $products);
+
+        dd($product, $product->features, $product->categories, $product->prices, $product->options, $product->variants);
+
+        return view('frontend.shop.product', compact('sections',  'product', 'similair', 'cart', 'total'));
     }
 
-    /**
-     * Show the form for creating a new Product.
-     *
-     * @return Response
-     */
-    public function create()
+
+
+
+
+    public function store(Request $request )
     {
-        $categories = $this->category->lists();
+       // $formData = $request->all();
+      //  dd($formData);
 
-        return view('backend.products.create', compact('categories'));
-    }
+        /**
+         * Validate the submitted Data
+         */
+        $validator =  $this->validate($request, [
+            'name' => 'required',
+//            'manufacturer' => 'required',
+//            'price' => 'required',
+//            'details' => 'required',
+//            'quantity' => 'required',
+//            'categories' => 'required',
+//            'thumbnail' => 'required|image',
+        ]);
 
-    /**
-     * Store a newly created Product in storage.
-     *
-     * @param  CreateProductRequest $request
-     * @return Response
-     */
-    public function store(CreateProductRequest $request)
-    {
-        $input = $request->all();
 
-
-        if ($request->hasFile('product_image_file'))
-        {
-            $file = $request->file('product_image_file');
-            $file = $this->productRepository->uploadProductImage($file);
-
-            $request->merge(['product_image' => $file->getFileInfo()->getFilename()]);
-
-            $this->generateProductThumbnail($file);
+        if ($request->hasFile('album')) {
+            foreach ($request->album as $photo) {
+                if ($photo && strpos($photo->getMimeType(), 'image') === false) {
+                    return \Redirect()->back();
+                }
+            }
         }
 
-        $product = $this->productRepository->create($input, $request->except('attribute_name', 'product_attribute_value', 'product_image_file'));
+        /**
+         * Upload a new thumbnail
+         */
+        $dest = "uploads/products/today";
+        $name = str_random(11)."_".$request->file('thumbnail')->getClientOriginalName();
+        $name2 = str_random(11)."_".$request->file('thumbnail2')->getClientOriginalName();
+        $request->file('thumbnail')->move($dest, $name);
+        $request->file('thumbnail2')->move($dest, $name2);
+        $product = $request->all();
+
+
+       // dd($product);
+
+        $product['thumbnail'] = "/".$dest.$name;
+        $product['thumbnail2'] = "/".$dest.$name2;
+
+        $product = Product::create($product);
+
+
+        // $product = Model::create($request->all());
+        // $product->price()->create($request->all());
+        // $product = Price::create($product);
+
+      //  $product = Product::create($product, $request->except('attribute_name', 'product_attribute_value', 'album', 'options'));
+
+        /**
+         * Upload Album Photos
+         */
+        if ($request->hasFile('album')) {
+            foreach ($request->album as $photo) {
+                if ($photo) {
+                    $name = str_random(11)."_".$photo->getClientOriginalName();
+                    $photo->move($dest, $name);
+                    AlbumPhoto::create([
+                        'product_id' => $product->id,
+                        'photo_src' => "/".$dest.$name,
+                        'alt' => $request->get('alt'),
+                        'caption' => $request->get('caption'),
+                        'photoinfo' => $request->get('photoinfo'),
+                        'linkto' => $request->get('linkto'),
+                        'use_main' => $request->get('use_main'),
+                        'use_thumb' => $request->get('use_thumb'),
+                        'use_gallery' => $request->get('use_gallery')
+                    ]);
+                }
+            }
+        }
+
+
+        /**
+         * Linking the categories to the product
+         */
+
+        foreach ($request->categories as $category_id) {
+            CategoryProduct::create(['category_id' => $category_id, 'product_id' => $product->id]);
+        }
+
+        /**
+         * Linking the options to the product
+         */
+
+        if ($request->has('options')){
+            foreach ($request->options as $option_details) {
+                if (!empty($option_details['name']) && !empty($option_details['values'][0]) ) {
+                    $option = Option::create([
+                        'name' => $option_details['name'],
+                        'product_id' => $product->id
+                    ]);
+                    foreach ($option_details['values'] as $value) {
+                        OptionValue::create([
+                            'value' => $value,
+                            'option_id' => $option->id
+                        ]);
+                    }
+                }
+            }
+        }
+
+
+        if ($request->has('prices')){
+            foreach ($request->prices as $productPrice) {
+                if (!empty($productPrice['price'])){
+                    $price = Price::create([
+                        'product_id' => $productPrice,
+                        'price'      => $productPrice,
+                        'model'      => $productPrice,
+                        'sku'        => $productPrice,
+                        'upc'        => $productPrice,
+                        'quantity'   => $productPrice,
+                        'details'    => $productPrice
+                    ]);
+                }
+            }
+        }
+
+
 
         if (!empty($request->attribute_name))
         {
@@ -118,138 +215,135 @@ class ProductController extends AppBaseController
             }
         }
 
-        Flash::success('Product saved successfully.');
-
-        return redirect(route(getLang() . '.admin.products.index'));
+        return \Redirect('/admin/products')->with([
+            'flash_message' => 'Product Created Successfully'
+        ]);
     }
 
-    /**
-     * Display the specified Product.
-     *
-     * @param  int        $id
-     * @return Response
-     */
-    public function show($id)
+
+
+    public function edit(Request $request, $id)
     {
-        $product = $this->productRepository->findWithoutFail($id);
+        $product = Product::find($id);
+//        $slug = Str::slug($product->name);
+        /**
+         * Validate the submitted Data
+         */
+        $this->validate($request, [
+            'name' => 'required',
+            'manufacturer' => 'required',
+            'price' => 'required',
+            'details' => 'required',
+            'quantity' => 'required',
+            'categories' => 'required',
+            'thumbnail' => 'image',
+        ]);
 
-        if (empty($product))
-        {
-            Flash::error('Product not found');
-
-            return redirect(route(getLang() . '.admin.products.index'));
-        }
-
-        return view('backend.products.show')->with('product', $product);
-    }
-
-    /**
-     * Show the form for editing the specified Product.
-     *
-     * @param  int        $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $product = $this->productRepository->findWithoutFail($id);
-
-        if (empty($product))
-        {
-            Flash::error('Product not found');
-
-            return redirect(route(getLang() . '.admin.products.index'));
-        }
-
-        return view('backend.products.edit')->with('product', $product);
-    }
-
-    /**
-     * Update the specified Product in storage.
-     *
-     * @param  int                  $id
-     * @param  UpdateProductRequest $request
-     * @return Response
-     */
-
-    public function update($id, UpdateProductRequest $request)
-    {
-        $product = $this->productRepository->findWithoutFail($id);
-
-        if (empty($product))
-        {
-            Flash::error('Product not found');
-
-            return redirect(route(getLang() . '.admin.products.index'));
-        }
-
-        if ($request->hasFile('product_image_file'))
-        {
-            $file = $request->file('product_image_file');
-            $file = $this->productRepository->uploadProductImage($file);
-            $request->merge([
-                'product_image' => $file->getFileInfo()->getFilename()
-            ]);
-            $this->generateProductThumbnail($file);
-        }
-        if (empty($product))
-        {
-            Flash::error('Product not found');
-            return redirect(route('admin.products.index'));
-        }
-
-        $product->update($request->except('attribute_name', 'product_attribute_value', 'product_image_file', 'feature_name'));
-
-        if (!empty($request->attribute_name))
-        {
-            foreach ($request->attribute_name as $key => $item)
-            {
-                $productVariant                          = new ProductVariant();
-                $productVariant->attribute_name          = $item;
-                $productVariant->product_attribute_value = $request->product_attribute_value[$key];
-                $product->productVariants()->save($productVariant);
+        if ($request->hasFile('album')) {
+            foreach ($request->album as $photo) {
+                if ($photo && strpos($photo->getMimeType(), 'image') === false) {
+                    return \Redirect()->back();
+                }
             }
         }
 
-        if (!empty($request->feature_name))
-        {
-            foreach ($request->feature_name as $feature)
-            {
-                $productFeature               = new ProductFeature();
-                $productFeature->feature_name = $feature;
-                $product->productFeatures()->save($productFeature);
+        /**
+         * Remove the old categories from the pivot table and maintain the reused ones
+         */
+        $added_categories = [];
+        foreach ($product->categories as $category) {
+            if (!in_array($category->id, $request->categories)) {
+                CategoryProduct::whereProduct_id($product->id)->whereCategory_id($category->id)->delete();
+            } else {
+                $added_categories[] = $category->id;
             }
         }
 
-        $product = $this->productRepository->update($request->all(), $id);
-
-        Flash::success('Product updated successfully.');
-
-        return redirect(route(getLang() . '.admin.products.index'));
-    }
-
-    /**
-     * Remove the specified Product from storage.
-     *
-     * @param  int        $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $product = $this->productRepository->findWithoutFail($id);
-
-        if (empty($product))
-        {
-            Flash::error('Product not found');
-
-            return redirect(route('admin.products.index'));
+        /**
+         * Link the new categories to the pivot table
+         */
+        foreach ($request->categories as $category_id) {
+            if (!in_array($category_id, $added_categories)) {
+                CategoryProduct::create(['category_id' => $category_id, 'product_id' => $product->id]);
+            }
         }
 
-        $this->productRepository->delete($id);
+        $info = $request->all();
 
-        Flash::success('Product deleted successfully.');
+        /**
+         * Upload a new thumbnail and delete the old one
+         */
+        $dest = "content/images/";
+        if ($request->file('thumbnail')) {
+            File::delete(public_path() . $product->thumbnail);
+            $name = str_random(11) . "_" . $request->file('thumbnail')->getClientOriginalName();
+            $request->file('thumbnail')->move($dest, $name);
+            $info['thumbnail'] = "/" . $dest . $name;
+        }
+        /**
+         * Upload Album Photos
+         */
+        if ($request->hasFile('album')) {
+            foreach ($request->album as $photo) {
+                if ($photo) {
+                    $name = str_random(11) . "_" . $photo->getClientOriginalName();
+                    $photo->move($dest, $name);
+                    AlbumPhoto::create([
+                        'product_id' => $product->id,
+                        'photo_src' => "/" . $dest . $name
+                    ]);
+                }
+            }
+        }
 
-        return redirect(route('admin.products.index'));
+        $product->update($info);
+
+//        $pivotTableData = App\Models\Product::find(1)->prices()->pivot;
+
+        /**
+         * Linking the options to the product
+         */
+        if ($request->has('options')) {
+            foreach ($request->options as $option_details) {
+                if (!empty($option_details['name']) && !empty($option_details['values']['name'][0])) {
+                    if (isset($option_details['id'])) {
+                        $size = count($option_details['values']['id']);
+                        Option::find($option_details['id'])->update(['name' => $option_details['name']]);
+                        foreach ($option_details['values']['name'] as $key => $value) {
+                            if ($key < $size) {
+                                OptionValue::find($option_details['values']['id'][$key])->update(['value' => $value]);
+                            } else {
+                                OptionValue::create([
+                                    'value' => $value,
+                                    'option_id' => $option_details['id']
+                                ]);
+                            }
+                        }
+                    } else {
+                        $option = Option::create([
+                            'name' => $option_details['name'],
+                            'product_id' => $product->id
+                        ]);
+                        foreach ($option_details['values']['name'] as $value) {
+                            if (!empty($value)) {
+                                OptionValue::create([
+                                    'value' => $value,
+                                    'option_id' => $option->id
+                                ]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        return \Redirect()->back()->with([
+            'flash_message' => 'Product Successfully Modified'
+        ]);
     }
+
+
 
     /**
      * @param array $variants
@@ -274,37 +368,89 @@ class ProductController extends AppBaseController
     {
         if (isset($features)) {
             $features = array_map(
-                    function ($v) {
-                        return explode(':', $v);
-                    },
-                    explode(',', $features)
+                function ($v) {
+                    return explode(':', $v);
+                },
+                explode(',', $features)
             );
         }
         return $features;
     }
 
-        /**
-     * @param $file
-     */
-    private function generateProductThumbnail($file)
+    private function getPrices($prices = [])
     {
-        $sourcePath = $file->getPath() . '/' . $file->getFilename();
-        $thumbPath = $file->getPath() . '/thumb_' . $file->getFilename();
-        Thumbnail::generate_image_thumbnail($sourcePath, $thumbPath);
+        if (isset($prices)) {
+            $prices = array_map(
+                function ($v) {
+                    return explode(':', $v);
+                },
+                explode(',', $prices)
+            );
+        }
+        return $prices;
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
+
+
+
     public function togglePublish($id)
     {
         return $this->product->togglePublish($id);
     }
 
-	public function lists()
-	{
-	//	return $this->product->get()->where('lang', $this->getLang())->lists('title', 'id');
-	}
+
+
+
+    public function delete($id)
+    {
+        $product = Product::find($id);
+
+        /**
+         * Remove the product , all its linked categories and delete the thumbnail
+         */
+        File::delete(public_path() . $product->thumbnail);
+        File::delete(public_path() . $product->thumbnail2);
+        CategoryProduct::whereProduct_id($id)->delete();
+        PriceProduct::whereProduct_id($id)->delete();
+        Price::whereProduct_id($id)->delete();
+        $product->delete();
+        return \Redirect::back();
+    }
+
+    public function deletePhoto($id, $photo_id)
+    {
+        $photo = AlbumPhoto::find($photo_id);
+        File::delete(public_path() . $photo->photo_src);
+        AlbumPhoto::destroy($photo_id);
+        return \Redirect()->back();
+    }
+
+    public function deleteOption($id)
+    {
+        Option::destroy($id);
+        return \Redirect()->back();
+    }
+
+    public function deleteOptionValue($id)
+    {
+        OptionValue::destroy($id);
+        return \Redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        if (strtoupper($request->sort) == 'NEWEST') {
+            $products = Product::where('name', 'like', '%' . $request->q . '%')->orderBy('created_at', 'desc')->paginate(40);
+        } elseif (strtoupper($request->sort) == 'HIGHEST') {
+            $products = Product::where('name', 'like', '%' . $request->q . '%')->orderBy('price', 'desc')->paginate(40);
+        } elseif (strtoupper($request->sort) == 'LOWEST') {
+            $products = Product::where('name', 'like', '%' . $request->q . '%')->orderBy('price', 'asc')->paginate(40);
+        } else {
+            $products = Product::where('name', 'like', '%' . $request->q . '%')->paginate(40);
+        }
+        helperFunctions::getPageInfo($sections, $cart, $total);
+        $query = $request->q;
+        return view('site.search', compact('sections', 'cart', 'total', 'products', 'query'));
+    }
 
 }

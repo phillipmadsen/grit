@@ -154,7 +154,7 @@ Purchase Quilter&#39;s Creative Touch | The Grace Company
                <div class="col-sm-4">
                   <h4 class="center" itemprop="hasPart about">QCT Software</h4>
                   <div class="block-img" style="-webkit-box-shadow: 1px 1px 7px 1px rgba(0,0,0,0.25);
-                     -moz-box-shadow:  1px 1px 7px 1px rgba(0,0,0,0.25));
+                     -moz-box-shadow:  1px 1px 7px 1px rgba(0,0,0,0.25);
                      box-shadow:  1px 1px 7px 1px rgba(0,0,0,0.25);">
                      <img src="{!! url('frontend/images/product-overviews/qct/usb.jpg') !!}" alt="QCT Motor Plate">
                   </div>

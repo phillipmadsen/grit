@@ -1,4 +1,4 @@
-@extends('backend/layout/layout')
+@extends('backend/layout/clip')
 
 @section('topscripts')
 <script type="text/javascript">
@@ -53,11 +53,17 @@
                 </div>
             </div>
             <div class="panel-body">
-
+                <div class="space12">
+                    <div class="btn-group btn-group-lg">
+                        <a class="btn btn-default" href="{!! route('admin.menu') !!}"> Menus </a>
+                        <a class="btn btn-default active" href="javascript:;">
+                         <i class="fa fa-plus"></i> Add Link To Menu</a>
+                    </div>
+                </div>
 
 <div class="col-md-8">
 
-  {!! Form::open(array('action' => '\Fully\Http\Controllers\Admin\MenuController@store')) !!}
+  {!! Form::open(['action' => '\App\Http\Controllers\Admin\MenuController@store']) !!}
     <!-- Title -->
     <div class="col-md-5 control-group {!! $errors->has('title') ? 'has-error' : '' !!}">
         <label class="control-label" for="title">Title</label>
@@ -70,7 +76,7 @@
         </div>
         <br>
     </div>
-<div class="col-md-12">
+    <div class="col-md-12">
     <!-- Type -->
     <label class="control-label" for="title">Type</label>
 
@@ -118,7 +124,7 @@
     <div class="col-md-12">
     <!-- Form actions -->
     {!! Form::submit('Save Changes', array('class' => ' btn btn-success')) !!}
-</div>
+    </div>
     {!! Form::close() !!}
 
 

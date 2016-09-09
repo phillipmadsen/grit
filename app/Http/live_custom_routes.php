@@ -12,20 +12,7 @@
 
 Route::group(['prefix' => LaravelLocalization::getCurrentLocale()], function () {
 
-    //  Route::group(array('prefix' => '/shop'), function () {
 
-    //         Route::get('/', array('as' => 'shop', 'uses' => 'ShopController@index'));
-    //         Route::get('/{slug}', array('as' => 'shop.product', 'uses' => 'ShopController@single'));
-    //         Route::get('/cart', array('as' => 'cart', 'uses' => 'ShopController@getCart'));
-    //         Route::get('/cart/checkout', array('as' => 'checkout', 'uses' => 'ShopController@startCheckout'));
-
-    // });
-
-// Route::post('user/profile', function () {
-//     // Validate the request...
-
-//     return back()->withInput();
-// });
 
     //AUTOMATED QCT
     Route::group(['prefix' => '/automation/qct'], function () {
@@ -79,11 +66,11 @@ Route::group(['prefix' => LaravelLocalization::getCurrentLocale()], function () 
         Route::get('/', ['as' => 'qnique', 'uses' => 'LiveSiteController@qnique']);
         Route::get('/features', ['as' => 'qnique.features', 'uses' => 'LiveSiteController@qfeatures']);
         Route::get('/specs', ['as' => 'qnique.specs', 'uses' => 'LiveSiteController@qspecs']);
-        Route::get('/accessories', ['as' => 'qnique.accessories', 'uses' => 'LiveSiteController@qniqueaccessories']);
-        Route::get('/comparison', ['as' => 'qnique.comparison', 'uses' => 'LiveSiteController@comparison']);
+        Route::get('/accessories', ['as' => 'qnique.accessories', 'uses' => 'LiveSiteController@qaccessories']);
+       // Route::get('/comparison', ['as' => 'qnique.comparison', 'uses' => 'LiveSiteController@comparison']);
 
     });
 
-  //  Route::get('sitemap', ['as' => 'sitemap', 'uses' => 'LiveSiteController@htmlsitemap']);
+
 
 });

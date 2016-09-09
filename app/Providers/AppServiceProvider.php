@@ -1,6 +1,6 @@
 <?php
 
-namespace Fully\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if($this->app->environment() == 'local') {
+            $this->app->register('\Laracademy\Generators\GeneratorsServiceProvider');
+     //       $this->app->register('\Devlob\Generators\DevlobGeneratorsServiceProvider');
+        }
     }
 }

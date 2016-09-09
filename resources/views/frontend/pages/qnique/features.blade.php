@@ -8,6 +8,10 @@ itemscope itemtype="http://schema.org/Article"
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author"content="The Grace Company"/>
+
+@endsection
+
+@section('jsonschema')
 <script type="application/ld+json">
 {
    "@context":"http:\/\/schema.org\/",
@@ -25,8 +29,6 @@ itemscope itemtype="http://schema.org/Article"
 }
 </script>
 @endsection
-
-@section('jsonschema')@endsection
 
 @section('title')
 Qnique Features | The Grace Company
@@ -48,10 +50,8 @@ rows
     .revo-slider-emphasis-text{font-size:64px;font-weight:700;letter-spacing:-1px;font-family:'Raleway',sans-serif;padding:15px 20px;border-top:2px solid #FFF;border-bottom:2px solid #FFF;}
     .revo-slider-desc-text{font-size:20px;font-family:'Lato',sans-serif;width:650px;text-align:center;line-height:1.5;}
     .revo-slider-caps-text{font-size:16px;font-weight:400;letter-spacing:3px;font-family:'Raleway',sans-serif;}
-    .hotspot-icon{background:url({!! url('frontend/images/qnique/features/hotspot.png') !!}
-    )center no-repeat;width:100%;height:100%;max-height:3.2rem;max-width:3.2rem;padding:10px;}
-    .hotspot-red-icon{background:url({!! url('frontend/images/qnique/features/red-hotspot.png') !!}
-    )center no-repeat!important;height:30px;width:30px;padding:10px;}
+    .hotspot-icon{background:url(''{!! url('frontend/images/qnique/features/hotspot.png') !!}')center no-repeat;width:100%;height:100%;max-height:3.2rem;max-width:3.2rem;padding:10px;}
+    .hotspot-red-icon{background:url('{!! url('frontend/images/qnique/features/red-hotspot.png') !!}')center no-repeat!important;height:30px;width:30px;padding:10px;}
     span.icon-hoppingfoot{position:absolute;cursor:pointer;z-index:20;top:35%;left:38%;border-width:3px;border-color:#fff;}
     #xray-wrapper { position: relative; height: 800px; }
     #unchangable-container { height: 100%; width: 100%; }

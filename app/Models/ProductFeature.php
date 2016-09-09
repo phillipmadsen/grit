@@ -1,14 +1,19 @@
 <?php
-namespace Fully\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class ProductFeature
+ * @package App\Models
+ */
 class ProductFeature extends Model
 {
-    /**
-     * @var array
-     */
+    use SoftDeletes;
+
     protected $dates = ['deleted_at'];
+
     /**
      * @var array
      */

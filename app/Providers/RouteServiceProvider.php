@@ -1,9 +1,11 @@
 <?php
 
-namespace Fully\Providers;
+namespace App\Providers;
 
+use App\Models\CategoryProduct;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Fully\Http\Controllers';
+    protected $namespace = 'App\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -24,8 +26,19 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         //
+     //   \Route::singularResourceParameters();
 
         parent::boot($router);
+
+      //  Route::model('CategoryProduct', 'App\Models\CategoryProduct');
+
+//        $router->bind('user', function ($value) {
+//            return App\User::where('name', $value)->first();
+//        });
+
+        // $router->bind('Product', function($value){
+        //      return \App\Models\Product::where('id', $value)->orWhere('slug', $value)->first();
+        // });
     }
 
     /**
@@ -37,6 +50,12 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->group(['namespace' => $this->namespace], function ($router) {
             require app_path('Http/routes.php');
+			require app_path('Http/dev_routes.php');
+			require app_path('Http/live_custom_routes.php');
+			require app_path('Http/new_routes.php');
+			require app_path('Http/shop_routes.php');
+//			require app_path('Http/account_routes.php');
+			require app_path('Http/api_routes.php');
         });
     }
 }

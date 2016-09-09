@@ -45,7 +45,7 @@
                         <li> <a data-toggle="tab" href="#panel_tab_social"> SOCIAL </a> </li>
                         <li>{!! Form::submit('Create', array('class' => 'btn btn-success')) !!}</li>
                     </ul>
-                    {!! Form::open(array('action' => '\Fully\Http\Controllers\Admin\PageController@store')) !!}
+                    {!! Form::open(array('action' => '\App\Http\Controllers\Admin\PageController@store')) !!}
                     <div class="tab-content">
 
                         <div id="panel_tab_content" class="tab-pane active">

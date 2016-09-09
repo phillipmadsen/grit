@@ -1,13 +1,13 @@
 <?php
 
-namespace Fully\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Closure;
 use Menu;
 use View;
 
-class MenuMiddleware
-{
+class MenuMiddleware {
+
     /**
      * Handle an incoming request.
      *
@@ -15,9 +15,8 @@ class MenuMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
-      Menu::make('live_primary', function($menu) {
+    public function handle($request, Closure $next) {
+        Menu::make('live_primary', function($menu) {
             $menu->add('Home', '/');
             $menu->add('Sewing Machines', getLang() . '/sewing-machines/qnique');
             $menu->add('Machine Frames', getLang() . '/machine-frames');
@@ -26,53 +25,48 @@ class MenuMiddleware
             $menu->add('truecut', getLang() . '/');
             $menu->add('Community', getLang() . '/community');
             $shop = $menu->add('Shop', getLang() . '/shop', ['class' => 'sf-menu']);
-                        $shop->add('Cart', getLang() . '/shop/cart');
-                        $shop->add('Checkout', getLang() . '/shop/checkout');
+            $shop->add('Cart', getLang() . '/shop/cart');
+            $shop->add('Checkout', getLang() . '/shop/checkout');
             $menu->add('Blog', getLang() . '/articles');
             $menu->add('Contact', getLang() . '/contact');
         });
 
-         Menu::make('disclosures', function($menu) {
-            $menu->add('Terms Conditions', getLang() . '/page/terms-and-conditions');
-            $menu->add('Privacy Policy', getLang() . '/page/shipping-policy');
-            $menu->add('Returns', getLang() . '/page/refund-poliy');
-            $menu->add('Support', getLang() . '/page/support');
-            $menu->add('Copyright', getLang() . '/page/copyright-diclaimer');
+        Menu::make('disclosures', function($menu) {
+            $menu->add('Terms Conditions', getLang() . '/page/tos');
+            $menu->add('Privacy Policy', getLang() . '/page/pp');
+            $menu->add('Returns', getLang() . '/page/returns');
+
+            $menu->add('Copyright', getLang() . '/page/copyright');
             $menu->add('Shipping Policy', getLang() . '/page/shipping-policy');
-           // $menu->add('Search', getLang() . '/');
-           // $menu->add('Sitemap', getLang() . '/sitemap');
-           // $menu->add('Blog', getLang() . '/community/blog');
 
         });
 
 
-       Menu::make('pagedisclusures', function($menu) {
-            $menu->add('Copyright', getLang() . '/page/copyright-diclaimer');
-            $menu->add('Privacy Policy', getLang() . '/page/shipping-policy');
-            $menu->add('Returns', getLang() . '/page/refund-poliy');
+        Menu::make('pagedisclusures', function($menu) {
+            $menu->add('Copyright', getLang() . '/page/copyright');
+            $menu->add('Privacy Policy', getLang() . '/page/pp');
+            $menu->add('Returns', getLang() . '/page/returns');
             $menu->add('Shipping Policy', getLang() . '/page/shipping-policy');
-            $menu->add('Support', getLang() . '/page/support');
-            $menu->add('Terms Conditions', getLang() . '/page/terms-and-conditions');
+
+            $menu->add('Terms Conditions', getLang() . '/page/tos');
         });
 
         Menu::make('account', function($menu) {
 
             $menu->add('My Account', getLang() . '/my-account')->icon('user');
             $menu->add('Purchase History', getLang() . '/my-account');
-           // $menu->add('Shipping Details', getLang() . '/my-account');
-           // $menu->add('Refunds', getLang() . '/my-account');
-           // $menu->add('Support', getLang() . '/my-account');
-
+            // $menu->add('Shipping Details', getLang() . '/my-account');
+            // $menu->add('Refunds', getLang() . '/my-account');
+            // $menu->add('Support', getLang() . '/my-account');
         });
 
         Menu::make('contact', function($menu) {
 
             $menu->add('My Account', getLang() . '/my-account')->icon('user');
             $menu->add('Support', getLang() . '/');
-           // $menu->add('Shipping Details', getLang() . '/my-account');
-           // $menu->add('Refunds', getLang() . '/my-account');
-           // $menu->add('Support', getLang() . '/my-account');
-
+            // $menu->add('Shipping Details', getLang() . '/my-account');
+            // $menu->add('Refunds', getLang() . '/my-account');
+            // $menu->add('Support', getLang() . '/my-account');
         });
 
         Menu::make('category', function($menu) {
@@ -81,20 +75,18 @@ class MenuMiddleware
             $menu->add('Hand Quilting', getLang() . '/category/hand-quilting');
             $menu->add('Machine Quilting', getLang() . '/category/machine-quilting');
             $menu->add('Qnique', getLang() . '/category/qnique');
-            //$menu->add('Accessories', getLang() . '/category/accessories');
 
         });
 
         Menu::make('shop', function($menu) {
-            $menu->add('Shop', getLang() . '/shop')->icon('cart');
-            $menu->add('Cart', getLang() . '/shop/cart');
-            $menu->add('Checkout', getLang() . '/shop/cart/checkout');
-            $menu->add('TrueCut', getLang() . '/shop/truecut');
-            $menu->add('Hand Quilting', getLang() . '/shop/hand-quilting');
-            $menu->add('Machine Quilting', getLang() . '/shop/machine-quilting');
-            $menu->add('Qnique', getLang() . '/shop/qnique');
-            $menu->add('Accessories', getLang() . '/shop/accessories');
-
+//            $menu->add('Shop', getLang() . '/shop')->icon('cart');
+//            $menu->add('Cart', getLang() . '/shop/cart');
+//            $menu->add('Checkout', getLang() . '/shop/cart/checkout');
+//            $menu->add('TrueCut', getLang() . '/shop/truecut');
+//            $menu->add('Hand Quilting', getLang() . '/shop/hand-quilting');
+//            $menu->add('Machine Quilting', getLang() . '/shop/machine-quilting');
+//            $menu->add('Qnique', getLang() . '/shop/qnique');
+//            $menu->add('Accessories', getLang() . '/shop/accessories');
         });
 
         Menu::make('truecut', function($menu) {
@@ -109,33 +101,30 @@ class MenuMiddleware
             $menu->add('Accessories', getLang() . '/truecut/rotary-cutting-accessories');
         });
 
-            // $menu->add('WHAT WE DO', getLang() . "/");
-            // $menu->add('ABOUT US', getLang() . "/");
-            // $menu->add('MANUFACTURING', getLang() . "/");
-            // $menu->add('INVESTORS', getLang() . "/");
-            // $menu->add('NEWS', getLang() . "/");
-            // $menu->add('CAREERS', getLang() . "/");
-            // $menu->add('CONTACT', getLang() . "/");
+        // $menu->add('WHAT WE DO', getLang() . "/");
+        // $menu->add('ABOUT US', getLang() . "/");
+        // $menu->add('MANUFACTURING', getLang() . "/");
+        // $menu->add('INVESTORS', getLang() . "/");
+        // $menu->add('NEWS', getLang() . "/");
+        // $menu->add('CAREERS', getLang() . "/");
+        // $menu->add('CONTACT', getLang() . "/");
 
         Menu::make('homepage', function($menu) {
-            //$about = $menu->add('The Grace Company', getLang() . '/about');
-                //$about->add('WHAT WE DO', getLang() . "/");
-               // $about->add('ABOUT US', getLang() . "/");
-            $menu->add('Community', getLang() . '/community/')->data([
-        'order' => 0,
-        'permission' => 'view_admin_dashboard',
-        'lorem' => 'ipsum'
-    ]);
+            $about = $menu->add('The Grace Company', getLang() . '/about');
+            $about->add('WHAT WE DO', getLang() . "/");
+            // $about->add('ABOUT US', getLang() . "/");
+            $menu->add('Community', getLang() . '/');
+            $menu->add('admin', 'admin/login');
             //$menu->add('News', getLang() . '/community/news/');
             //$menu->add('FAQ\'s', getLang() . '/');
             //$menu->add('Tutorials', getLang() . '/');
             //$menu->add('Manufacturing', getLang() . "/");
             //$menu->add('Careers', getLang() . "/careers");
             //$menu->add('Investors', getLang() . "/");
-            $menu->add('Support', getLang() . '/');
+            //  $menu->add('Support', getLang() . '/');
 
             $menu->add('Shop Now', getLang() . '/shop');
-            //, ['class' => 'button button-rounded button-border']);
+            //$shop = $menu->add('Shop Again', getLang() . '/shop', ['class' => 'button button-rounded button-border']);
         });
 
         Menu::make('qct', function($menu) {
@@ -182,13 +171,13 @@ class MenuMiddleware
 
             $menu->add('Qnique', getLang() . '/sewing-machines/qnique');
 //            $menu->add('Features', getLang() . '/sewing-machines/qnique/features');
-  //          $menu->add('Specs', getLang() . '/sewing-machines/qnique/specs');
+            //          $menu->add('Specs', getLang() . '/sewing-machines/qnique/specs');
             $menu->add('Accessories', getLang() . '/sewing-machines/qnique/accessories');
-            $menu->add('Comparison', getLang() . '/sewing-machines/qnique/comparison');
+            //   $menu->add('Comparison', getLang() . '/sewing-machines/qnique/comparison');
         });
 
         Menu::make('blog', function($menu) {
-           // $menu->add('News', getLang() . '/news');
+            // $menu->add('News', getLang() . '/news');
             $menu->add('Events', getLang() . '/events');
             $menu->add('Promos', getLang() . '/');
             $menu->add('Contests', getLang() . '/');
@@ -196,18 +185,17 @@ class MenuMiddleware
         });
 
 
-       Menu::make('popular', function($menu) {
+        Menu::make('popular', function($menu) {
             $menu->add('Documentation', getLang() . '/docs');
             $menu->add('Software', getLang() . '/');
             $menu->add('FAQ\'s', getLang() . '/');
             $menu->add('Support Forums', getLang() . '/');
             $menu->add('Press & News', getLang() . '/');
-            $menu->add('Blog', getLang() . '/');
+            $menu->add('Blog', getLang() . '/community/blog');
             $menu->add('Quilting Community', getLang() . '/');
-
         });
 
-       Menu::make('page', function($menu) {
+        Menu::make('page', function($menu) {
             $menu->add('Community', getLang() . '/docs');
             $menu->add('Support Forums', getLang() . '/');
             $menu->add('Press & News', getLang() . '/');
@@ -217,4 +205,5 @@ class MenuMiddleware
 
         return $next($request);
     }
+
 }

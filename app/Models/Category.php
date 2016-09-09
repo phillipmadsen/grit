@@ -1,54 +1,72 @@
 <?php
 
-namespace Fully\Models;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use App\Interfaces\ModelInterface as ModelInterface;
 use Cviebrock\EloquentSluggable\SluggableInterface;
-use Fully\Interfaces\ModelInterface as ModelInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Category.
  *
- * @author Sefa Karagöz <karagozsefa@gmail.com>
+ * @author Phillip Madsen <contact@affordableprogrammer.com>
  */
 class Category extends Model implements ModelInterface, SluggableInterface
 {
     use SluggableTrait;
 
-    public $table = 'categories';
+//    public $table = 'categories';
+    protected $table = "categories";
     public $timestamps = false;
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'slug', 'name', 'section_id', 'meta_description', 'lang'];
     protected $appends = ['url'];
 
-    protected $sluggable = array(
+    protected $sluggable = [
         'build_from' => 'title',
         'save_to' => 'slug',
-    );
+    ];
 
-    public function articles()
-    {
-        return $this->hasMany('Fully\Models\Article');
-    }
 
+    /**
+     * @param $value
+     */
     public function setUrlAttribute($value)
     {
         $this->attributes['url'] = $value;
     }
 
+    /**
+     * @return string
+     */
     public function getUrlAttribute()
     {
         return 'category/'.$this->attributes['slug'];
     }
 
     /**
-     * Relationship with the product model.
-     *
-     * @author    Andrea Marco Sartori
-     * @return    Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function products()
     {
-        return $this->hasMany(Fully\Models\Product::class);
+        return $this->belongsToMany(Product::class, 'category_product');
+    }
+
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
     }
 }

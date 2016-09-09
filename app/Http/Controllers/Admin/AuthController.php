@@ -1,16 +1,16 @@
 <?php
 
-namespace Fully\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 use Mail;
 use Sentinel;
 use Reminder;
 use Redirect;
 use Validator;
-use Fully\User;
-use Fully\Services\Mailer;
+use App\User;
+use App\Services\Mailer;
 use Illuminate\Http\Request;
-use Fully\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 /**
  * Class AuthController.

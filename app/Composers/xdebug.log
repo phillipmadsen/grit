@@ -1,0 +1,96 @@
+Log opened at 2016-08-24 23:30:51
+I: Checking remote connect back address.
+I: Checking header 'HTTP_X_FORWARDED_FOR'.
+I: Checking header 'REMOTE_ADDR'.
+W: Remote address not found, connecting to configured address/port: 127.0.0.1:9000. :-|
+I: Connected to client. :-)
+-> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///E:/GraceRepos/grace.reset/app/Composers/ArticleComposer.php" language="PHP" xdebug:language_version="7.0.1-dev" protocol_version="1.0" appid="9660" idekey="11815"><engine version="2.4.1"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2016 by Derick Rethans]]></copyright></init>
+
+<- feature_set -i 1 -n show_hidden -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="1" feature="show_hidden" success="1"></response>
+
+<- feature_set -i 2 -n max_depth -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="2" feature="max_depth" success="1"></response>
+
+<- feature_set -i 3 -n max_children -v 100
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="3" feature="max_children" success="1"></response>
+
+<- status -i 4
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="status" transaction_id="4" status="starting" reason="ok"></response>
+
+<- step_into -i 5
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="step_into" transaction_id="5" status="break" reason="ok"><xdebug:message filename="file:///E:/GraceRepos/grace.reset/app/Composers/ArticleComposer.php" lineno="12"></xdebug:message></response>
+
+<- stack_get -i 6
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="6"><stack where="{main}" level="0" type="file" filename="file:///E:/GraceRepos/grace.reset/app/Composers/ArticleComposer.php" lineno="12"></stack></response>
+
+<- run -i 7
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="7" status="stopping" reason="ok"></response>
+
+<- run -i 8
+Log closed at 2016-08-24 23:30:51
+
+Log opened at 2016-08-24 23:33:10
+I: Checking remote connect back address.
+I: Checking header 'HTTP_X_FORWARDED_FOR'.
+I: Checking header 'REMOTE_ADDR'.
+W: Remote address not found, connecting to configured address/port: 127.0.0.1:9000. :-|
+I: Connected to client. :-)
+-> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///E:/GraceRepos/grace.reset/app/Composers/ArticleComposer.php" language="PHP" xdebug:language_version="7.0.1-dev" protocol_version="1.0" appid="4052" idekey="17242"><engine version="2.4.1"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2016 by Derick Rethans]]></copyright></init>
+
+<- feature_set -i 1 -n show_hidden -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="1" feature="show_hidden" success="1"></response>
+
+<- feature_set -i 2 -n max_depth -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="2" feature="max_depth" success="1"></response>
+
+<- feature_set -i 3 -n max_children -v 100
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="3" feature="max_children" success="1"></response>
+
+<- status -i 4
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="status" transaction_id="4" status="starting" reason="ok"></response>
+
+<- step_into -i 5
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="step_into" transaction_id="5" status="break" reason="ok"><xdebug:message filename="file:///E:/GraceRepos/grace.reset/app/Composers/ArticleComposer.php" lineno="12"></xdebug:message></response>
+
+<- stack_get -i 6
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="6"><stack where="{main}" level="0" type="file" filename="file:///E:/GraceRepos/grace.reset/app/Composers/ArticleComposer.php" lineno="12"></stack></response>
+
+<- run -i 7
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="7" status="stopping" reason="ok"></response>
+
+<- run -i 8
+Log closed at 2016-08-24 23:33:11
+
+Log opened at 2016-08-24 23:33:28
+I: Checking remote connect back address.
+I: Checking header 'HTTP_X_FORWARDED_FOR'.
+I: Checking header 'REMOTE_ADDR'.
+W: Remote address not found, connecting to configured address/port: 127.0.0.1:9000. :-|
+I: Connected to client. :-)
+-> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///E:/GraceRepos/grace.reset/app/Composers/ArticleComposer.php" language="PHP" xdebug:language_version="7.0.1-dev" protocol_version="1.0" appid="5140" idekey="14569"><engine version="2.4.1"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2016 by Derick Rethans]]></copyright></init>
+
+<- feature_set -i 1 -n show_hidden -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="1" feature="show_hidden" success="1"></response>
+
+<- feature_set -i 2 -n max_depth -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="2" feature="max_depth" success="1"></response>
+
+<- feature_set -i 3 -n max_children -v 100
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="3" feature="max_children" success="1"></response>
+
+<- status -i 4
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="status" transaction_id="4" status="starting" reason="ok"></response>
+
+<- step_into -i 5
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="step_into" transaction_id="5" status="break" reason="ok"><xdebug:message filename="file:///E:/GraceRepos/grace.reset/app/Composers/ArticleComposer.php" lineno="12"></xdebug:message></response>
+
+<- stack_get -i 6
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stack_get" transaction_id="6"><stack where="{main}" level="0" type="file" filename="file:///E:/GraceRepos/grace.reset/app/Composers/ArticleComposer.php" lineno="12"></stack></response>
+
+<- run -i 7
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="7" status="stopping" reason="ok"></response>
+
+<- run -i 8
+Log closed at 2016-08-24 23:33:28
+

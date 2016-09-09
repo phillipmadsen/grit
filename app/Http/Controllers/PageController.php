@@ -1,9 +1,9 @@
 <?php
 
-namespace Fully\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Fully\Repositories\Page\PageInterface;
-use Fully\Repositories\Page\PageRepository as Page;
+use App\Repositories\Page\PageInterface;
+use App\Repositories\Page\PageRepository as Page;
 
 /**
  * Class PageController.
@@ -36,4 +36,8 @@ class PageController extends Controller
 
         return view('frontend.page.show', compact('page'));
     }
+
+
+
 }
+

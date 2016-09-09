@@ -19,8 +19,8 @@
                         </div>
                         <div class="video-wrap">
                             <video id="slide-video" poster="{!! asset('frontend/images/videos/qnique-overview-poster.jpg') !!}" preload="auto" loop autoplay muted>
-                                <source src='{!! asset('frontend/images/videos/qnique-video-background.webm') !!}' type='video/webm' />
-                                <source src='{!! asset('frontend/images/videos/qnique-video-background.mp4') !!}' type='video/mp4' />
+                                <source src="{!! asset('frontend/images/videos/qnique-video-background.webm') !!}" type='video/webm' />
+                                <source src="{!! asset('frontend/images/videos/qnique-video-background.mp4') !!}" type='video/mp4' />
                             </video>
                             <div class="video-overlay" style="background-color: rgba(0,0,0,0.1);"></div>
                         </div>

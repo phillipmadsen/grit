@@ -46,7 +46,7 @@ rows
             <div class="container center">
 
                     <div class="heading-block center nomargin dark nobottomborder">
-                        <h1 style="font=size:42px;">Quilter&#39;s Creative Touch 4.0</h1>
+                        <h1 style="font-size:42px;">Quilter&#39;s Creative Touch 4.0</h1>
                         <span class="before-heading" style="color:white;">New and Improved</span>
                     </div>
 
@@ -246,7 +246,7 @@ rows
                <div class="col-sm-4">
                   <h4 class="center">QCT Software</h4>
                   <div class="block-img" style="-webkit-box-shadow: 1px 1px 7px 1px rgba(0,0,0,0.25);
-                     -moz-box-shadow:  1px 1px 7px 1px rgba(0,0,0,0.25));
+                     -moz-box-shadow:  1px 1px 7px 1px rgba(0,0,0,0.25);
                      box-shadow:  1px 1px 7px 1px rgba(0,0,0,0.25);">
                      <img src="{!! asset('/frontend/images/product-overviews/qct/usb.jpg') !!}" alt="QCT Motor Plate">
                   </div>

@@ -11,11 +11,11 @@ class SettingsTableSeeder extends Seeder
     {
         DB::table('settings')->truncate();
 
-        $settings = array(
-            'settings' => '{"site_title":"Grace Management Console","ga_code":"UA-78414244-1","meta_keywords":"Grace Multi Language Website and Content Managment System","meta_description":"The new Grace Website Multi Language Content Managment System"}',
+        $settings = [
+            'settings' => '{"site_title":"Grace Manager & CMS - Laravel 5 Multi Language Content Managment System","ga_code":"","meta_keywords":"Laravel 5 Multi Language Content Managment System and company manager custom build","meta_description":"Laravel 5 Multi Language Content Managment System"}',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
-            'lang' => 'en', );
+            'lang' => 'en', ];
 
         DB::table('settings')->insert($settings);
     }

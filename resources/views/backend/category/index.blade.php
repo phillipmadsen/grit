@@ -47,10 +47,14 @@
             @include('flash::message')
 
 
-            <div class="pull-left">
-                <div class="btn-toolbar"><a href="{!! langRoute('admin.category.create') !!}" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add Category </a></div>
-            </div>
+                <div class="space12">
+                        <div class="btn-group btn-group-lg">
+                            <a class="btn btn-default active" href="javascript:void(0)"> Categories </a>
+                            <a class="btn btn-default hidden-xs" href="{!! route('admin.categories.create') !!}">
+                             <i class="fa fa-plus"></i> Add New Category</a>
+                        </div>
+                    </div>
+
 
             @if($categories->count())
                 <div class="table-responsive">
@@ -69,10 +73,10 @@
                                 </td>
                                 <td class="center">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <a href="{!! langRoute('admin.category.edit', array($category->id)) !!}" class="btn btn-xs btn-teal tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i> </a>
-                                        <a target="_blank" href="{!! langRoute('admin.category.show', array($category->id)) !!}" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="Preview"><i class="fa fa-share"></i> </a>
+                                        <a href="{!! langRoute('admin.category.edit', [$category->id]) !!}" class="btn btn-xs btn-teal tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i> </a>
+                                        <a target="_blank" href="{!! langRoute('admin.category.show', [$category->id]) !!}" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="Preview"><i class="fa fa-share"></i> </a>
                             {{--             <a target="_blank" href="{!! URL::route('dashboard.category', ['slug' => $category->slug]) !!}" class="btn btn-xs btn-red tooltips"  data-placement="top" data-original-title="Preview on Site"> <i class="fa fa-eye"></i> </a> --}}
-                                        <a href="{!! URL::route('admin.category.delete', array($category->id)) !!}" class="btn btn-xs btn-bricky tooltips" data-placement="top" data-original-title="Remove"><i class="fa fa-times fa fa-white"></i> </a>
+                                        <a href="{!! URL::route('admin.category.delete', [$category->id]) !!}" class="btn btn-xs btn-bricky tooltips" data-placement="top" data-original-title="Remove"><i class="fa fa-times fa fa-white"></i> </a>
                                     </div>
                                 </td>
 

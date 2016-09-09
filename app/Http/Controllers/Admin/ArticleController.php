@@ -1,20 +1,19 @@
 <?php
 
-namespace Fully\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
+use View;
 use Flash;
-use Fully\Exceptions\Validation\ValidationException;
-use Fully\Http\Controllers\Controller;
-use Fully\Models\User;
-use Fully\Repositories\Article\ArticleInterface;
-use Fully\Repositories\Article\ArticleRepository as Article;
-use Fully\Repositories\Category\CategoryInterface;
-use Fully\Repositories\Category\CategoryRepository as Category;
-use Fully\Services\Pagination;
-use Illuminate\Support\Facades\DB;
 use Input;
 use Response;
-use View;
+use App\Models\User;
+use App\Services\Pagination;
+use App\Http\Controllers\Controller;
+use App\Repositories\Article\ArticleInterface;
+use App\Repositories\Category\CategoryInterface;
+use App\Exceptions\Validation\ValidationException;
+use App\Repositories\Article\ArticleRepository as Article;
+use App\Repositories\Category\CategoryRepository as Category;
 
 /**
  * Class ArticleController.
@@ -23,34 +22,18 @@ use View;
  */
 class ArticleController extends Controller
 {
-    /**
-     * @var mixed
-     */
     protected $article;
-    /**
-     * @var mixed
-     */
     protected $category;
-    /**
-     * @var mixed
-     */
-    protected $User;
-    /**
-     * @var mixed
-     */
+    protected $users;
     protected $perPage;
 
-    /**
-     * @param ArticleInterface $article
-     * @param CategoryInterface $category
-     * @param User $user
-     */
-    public function __construct(ArticleInterface $article, CategoryInterface $category, User $user)
+    public function __construct(ArticleInterface $article, CategoryInterface $category, User $users)
     {
         View::share('active', 'blog');
         $this->article = $article;
-        $this->user    = $user;
         $this->category = $category;
+        $this->user = $users;
+
         $this->perPage = config('fully.modules.article.per_page');
     }
 
@@ -64,8 +47,6 @@ class ArticleController extends Controller
         $pagiData = $this->article->paginate(Input::get('page', 1), $this->perPage, true);
         $articles = Pagination::makeLengthAware($pagiData->items, $pagiData->totalItems, $this->perPage);
 
-        $users = User::select(DB::raw('concat(first_name," ",last_name) as full_name,id'))->lists('full_name', 'id');
-
         return view('backend.article.index', compact('articles'));
     }
 
@@ -78,9 +59,7 @@ class ArticleController extends Controller
     {
         $categories = $this->category->lists();
 
-        $users = User::select(DB::raw('concat(first_name," ",last_name) as full_name,id'))->lists('full_name', 'id');
-
-        return view('backend.article.create', compact('categories', 'users'));
+        return view('backend.article.create', compact('categories'));
     }
 
     /**
@@ -92,13 +71,10 @@ class ArticleController extends Controller
     {
         try {
             $this->article->create(Input::all());
-
             Flash::message('Article was successfully added');
 
             return langRedirectRoute('admin.article.index');
-        }
-        catch (ValidationException $e)
-        {
+        } catch (ValidationException $e) {
             return langRedirectRoute('admin.article.create')->withInput()->withErrors($e->getErrors());
         }
     }
@@ -106,7 +82,8 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int        $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
@@ -119,51 +96,30 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int        $id
+     * @param int $id
+     *
      * @return Response
      */
-	public function edit($id)
-	{
-		$article = $this->article->find($id);
-		//$user = $article->getUsers()->lists('name', 'id')->all();
-		//$category = Category::lists('title', 'id');
+    public function edit($id)
+    {
+        $article = $this->article->find($id);
+        $tags = null;
 
-		//$users   = User::select(DB::raw('concat(first_name," ",last_name) as full_name,id'))->lists('full_name', 'id');
-		$tags = null;
-		foreach ($article->tags as $tag) {
-			$tags .= ','.$tag->name;
-		}
-		$tags = substr($tags, 1);
+        foreach ($article->tags as $tag) {
+            $tags .= ','.$tag->name;
+        }
 
-		$users = $this->user->lists();
-		$categories = $this->category->lists();
+        $tags = substr($tags, 1);
+        $categories = $this->category->lists();
 
-		return view('backend.article.edit', compact('article', 'tags', 'categories', 'users'));
-	}
-
-
-	//public function edit($id)
-    //{
-    //    $article = $this->article->find($id);
-    //    //$users   = User::select(DB::raw('concat(first_name," ",last_name) as full_name,id'))->lists('full_name', 'id');
-    //
-    //    $tags = null;
-
-        //foreach ($article->tags as $tag)
-        //{
-        //    $tags .= ',' . $tag->name;
-        //}
-        //
-        //$tags       = substr($tags, 1);
-        //$categories = $this->category->lists();
-
-    //    return view('backend.article.edit', compact('article', 'tags', 'categories', 'users'));
-    //}
+        return view('backend.article.edit', compact('article', 'tags', 'categories'));
+    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int        $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update($id)
@@ -173,9 +129,7 @@ class ArticleController extends Controller
             Flash::message('Article was successfully updated');
 
             return langRedirectRoute('admin.article.index');
-        }
-        catch (ValidationException $e)
-        {
+        } catch (ValidationException $e) {
             return langRedirectRoute('admin.article.edit')->withInput()->withErrors($e->getErrors());
         }
     }
@@ -183,7 +137,8 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int        $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)
@@ -194,9 +149,6 @@ class ArticleController extends Controller
         return langRedirectRoute('admin.article.index');
     }
 
-    /**
-     * @param $id
-     */
     public function confirmDestroy($id)
     {
         $article = $this->article->find($id);
@@ -204,10 +156,6 @@ class ArticleController extends Controller
         return view('backend.article.confirm-destroy', compact('article'));
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
     public function togglePublish($id)
     {
         return $this->article->togglePublish($id);

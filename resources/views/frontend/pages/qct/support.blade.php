@@ -70,7 +70,7 @@ rows
  <div class="section parallax nomargin clearfix" style="background-image: url('{!! asset('/frontend/images/product-overviews/qct/wave-background.jpg') !!}'); background-size:cover; padding-bottom:0px;" data-stellar-background-ratio="0.2">
    <div class="container center">
       <div class="heading-block center dark nobottomborder">
-         <h1 style="font=size:42px;">QCT Support and Help Files</h1>
+         <h1 style="font-size:42px;">QCT Support and Help Files</h1>
       </div>
    </div>
 </div>

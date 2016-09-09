@@ -1,21 +1,21 @@
 <?php
 
-namespace Fully\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 use View;
 use Flash;
 use Redirect;
 use Sentinel;
 use Validator;
-use Fully\Models\User;
-use Fully\Models\Role;
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
-use Fully\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 /**
  * Class UserController.
  *
- * @author phillip madsen <contact@affordableprogrammer.com>
+ * @author Phillip Madsen <contact@affordableprogrammer.com>
  */
 class UserController extends Controller
 {
@@ -58,6 +58,8 @@ class UserController extends Controller
             'confirm-password' => $request->get('confirm_password'),
             'roles' => $request->get('roles'),
         );
+
+
 
         $rules = array(
             'first-name' => 'required|min:3',
@@ -206,13 +208,4 @@ class UserController extends Controller
 
         return view('backend.user.confirm-destroy', compact('user'))->with('active', 'user');
     }
-
-
-	public function lists()
-	{
-		//$user = Sentinel::findUserById($id);
-		//$users = User::orderBy('title', 'id')->list()->get();
-
-		return $this->user->get()->where('lang', $this->getLang())->lists('title', 'id');
-	}
 }

@@ -49,8 +49,8 @@
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-          ga('create', '{!! $settings['ga_code']  or 'UA-78414244-2' !!}', 'auto');
-          //ga('create', 'UA-78414244-2', 'auto', {'name': 'devTracker'});
+          ga('create', '{!! $settings['ga_code']  or '' !!}', 'auto');
+          //ga('create', '', 'auto', {'name': 'devTracker'});
           ga('require', 'ec');
             ga('require', 'displayfeatures');
             ga('require', 'linkid');
@@ -68,7 +68,7 @@
 
 </head>
 
-<body class=" @yield('bodytag') stretched" @yield('bodyschema')>
+<body class="@yield('bodytag') stretched" @yield('bodyschema')>
 	<div id="wrapper" class="clearfix">
 
     <!-- Top Bar
@@ -112,8 +112,7 @@
 
 	<div id="gotoTop" class="icon-angle-up"></div>
 
-    <!-- External JavaScripts
-    ============================================= -->
+    <!-- External JavaScript ============================================= -->
   <script type="text/javascript" src="{!! asset('/frontend/js/jquery.js') !!}"></script>
 
 
@@ -160,8 +159,25 @@
 <script type="text/javascript" src="{!! asset('frontend/js/plugins/jquery.toastr.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('frontend/js/plugins/jquery.twitterfeed.js') !!}"></script>
 
+	too cool chris
 
-<script type="text/javascript" src="{!! asset('/frontend/js/functions.js') !!}"></script>
+
+
+	<script>
+
+		swal({
+			title: "{{ session('flash_message_overlay.title') }}",
+			text: "{{ session('flash_message_overlay.message') }}",
+			type: "{{ session('flash_message_overlay.level') }}",
+			confirmButtonText: 'okay'
+		});
+
+	</script>
+
+
+	<script type="text/javascript" src="{!! asset('/frontend/js/functions.js') !!}"></script>
+
+	@include('flash')
 
 @yield('footer_scripts')
 @yield('pp_footer_scripts')

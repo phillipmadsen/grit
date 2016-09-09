@@ -55,7 +55,7 @@
 
 
 
-                {!! Form::open(array('action' => '\Fully\Http\Controllers\Admin\FaqController@store')) !!}
+                {!! Form::open(array('action' => '\App\Http\Controllers\Admin\FaqController@store')) !!}
                 <!-- Question -->
                 <div class="control-group {!! $errors->has('question') ? 'has-error' : '' !!}">
                     <label class="control-label" for="question">Question</label>

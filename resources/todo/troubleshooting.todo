@@ -1,0 +1,6 @@
+THING TO REPAIR:
+
+	☐	FIX CATEGORY IN PRODUCT ADMIN INDEX
+	☐	FIX LINK ISSUES IN OLD MODULES
+	☐	FIX FOREACH ISSUE IN CART @critical [](app/Ecommerce/helperFunctions.php "foreach issue")  @started(11:32 08-19-2016)
+

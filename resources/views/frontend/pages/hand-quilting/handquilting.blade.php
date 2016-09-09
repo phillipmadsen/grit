@@ -167,7 +167,7 @@ itemscope itemtype="http://schema.org/Article"
             <!---Adjustability =======================================================-->
             <div class="container center">
                 <div class="heading-block nobottomborder topmargin nobottommargin">
-                    <h2>Fully Adjustable</h2>
+                    <h2>App Adjustable</h2>
                     <p class="before-heading">Quilt in comfort</p>
                 </div>
                 <p class="lead">Grace hand-quilting frames and hoops are the most adjustable on the market! Adjustable

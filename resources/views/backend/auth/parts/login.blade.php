@@ -3,14 +3,15 @@
 <p>
     Please enter your name and password to log in.
 </p>
-<form class="form-login" action="index.html">
+
+	{!! Form::open(['url' => '/admin/login', 'class' => 'form-login']) !!}
     <div class="errorHandler alert alert-danger no-display">
         <i class="fa fa-remove-sign"></i> You have some form errors. Please check below.
     </div>
     <fieldset>
         <div class="form-group">
             <span class="input-icon">
-                <input type="text" class="form-control" name="username" placeholder="Username">
+                <input type="text" class="form-control" name="email" placeholder="Email">
                 <i class="fa fa-user"></i> </span>
         </div>
         <div class="form-group form-actions">
@@ -37,4 +38,4 @@
             </a>
         </div>
     </fieldset>
-</form>
+{!! Form::close() !!}

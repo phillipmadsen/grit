@@ -60,7 +60,7 @@
     </div>
 </div>
 
-                    {!! Form::open(['action' => '\Fully\Http\Controllers\Admin\UserController@store']) !!}
+                    {!! Form::open(['action' => '\App\Http\Controllers\Admin\UserController@store']) !!}
 
                     <!-- First Name -->
                     <div class="control-group {!! $errors->has('first-name') ? 'has-error' : '' !!}">

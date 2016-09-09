@@ -1,9 +1,8 @@
 <?php
 
-namespace Fully\Composers;
+namespace App\Composers;
 
-use Fully\Models\Article;
-use Fully\Repositories\Article\ArticleInterface;
+use App\Repositories\Article\ArticleInterface;
 
 /**
  * Class ArticleComposer.
@@ -13,7 +12,7 @@ use Fully\Repositories\Article\ArticleInterface;
 class ArticleComposer
 {
     /**
-     * @var \Fully\Repositories\Article\ArticleInterface
+     * @var \App\Repositories\Article\ArticleInterface
      */
     protected $article;
 
@@ -28,12 +27,8 @@ class ArticleComposer
     /**
      * @param $view
      */
-    public function compose($view )
+    public function compose($view)
     {
-
-        // $articles = $this->article->getLastArticle(6);
-        // $related_view->with('articles', $articles);
-
         $articles = $this->article->getLastArticle(3);
         $view->with('articles', $articles);
     }

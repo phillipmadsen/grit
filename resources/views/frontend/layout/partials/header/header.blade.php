@@ -13,11 +13,9 @@
             <!-- #logo end -->
             <!-- Primary Navigation ============================================= -->
             <nav id="primary-menu">
-         @include('frontend.layout.menu-cart')
+                @include('frontend.layout.menu-cart')
                 @include('frontend.layout.menu')
-
             </nav>
-
             <!-- #primary-menu end --> </div>
     </div>
 </header>

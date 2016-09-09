@@ -1,6 +1,6 @@
 <?php
 
-namespace Fully\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Closure;
 use Sentinel;
@@ -29,6 +29,8 @@ class SentinelAuth
                 return redirect()->guest(route('admin.login'));
             }
         }
+
+
 
         return $next($request);
     }

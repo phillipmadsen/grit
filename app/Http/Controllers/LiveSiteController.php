@@ -1,11 +1,11 @@
 <?php
 
-namespace Fully\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Fully\Http\Requests;
-use Fully\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class LiveSiteController extends Controller
 {

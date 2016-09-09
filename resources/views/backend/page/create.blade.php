@@ -33,17 +33,36 @@
 @endsection
 
 @section('content')
+<div class="row">
     <div class="col-sm-12">
-        <!-- start: PANLEL TABS -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="fa fa-reorder"></i>
-                Panel Tabs
+                <i class="clip-stats"></i>
+                Panel Data
+                <div class="panel-tools">
+                    <a class="btn btn-xs btn-link panel-collapse collapses" href="#"> </a>
+                    <a class="btn btn-xs btn-link panel-config" href="#panel-config" data-toggle="modal"> <i class="fa fa-wrench"></i> </a>
+                    <a class="btn btn-xs btn-link panel-refresh" href="#"> <i class="fa fa-refresh"></i> </a>
+                    <a class="btn btn-xs btn-link panel-close" href="#"> <i class="fa fa-times"></i> </a>
+                </div>
             </div>
             <div class="panel-body">
 
+
+
+<div class="space12">
+    <div class="btn-group btn-group-lg">
+        <a class="btn btn-default active" href="{!! route('admin.menu') !!}"> Menus </a>
+        <a class="btn btn-default hidden-xs" href="javascript:;">
+         <i class="fa fa-plus"></i> Add Link To Menu</a>
+    </div>
+</div>
+<br style="clear:both" />
+
+
+
                 <div class="tabbable panel-tabs">
-                 {!! Form::open(['action' => '\Fully\Http\Controllers\Admin\PageController@store']) !!}
+                 {!! Form::open(['action' => '\App\Http\Controllers\Admin\PageController@store']) !!}
                     <ul class="nav nav-tabs">
                         <li class="active"> <a data-toggle="tab" href="#panel_tab_content"> Article Content </a> </li>
                         <li> <a data-toggle="tab" href="#panel_tab_seo"> SEO < META > </a> </li>
@@ -57,15 +76,13 @@
                     </div>
                 {!! Form::close() !!}
                 </div>
-            </div>
-
+             </div>
         </div>
-        <!-- end: PANLEL TABS -->
-
     </div>
+</div>
 @endsection
 
-@section('bottomscriptsss')
+@section('bottomscripts')
         <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script>
         window.onload = function () {
@@ -75,11 +92,8 @@
         };
     </script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-
-
 @endsection
 
 @section('clipinline')
-
     TableData.init();
 @endsection

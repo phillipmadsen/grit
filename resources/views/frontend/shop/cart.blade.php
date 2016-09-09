@@ -33,6 +33,7 @@ Cart | Secure Area
 @endsection
 
 @section('sidebar')@endsection
+
 @section('content')
 
 
@@ -43,10 +44,11 @@ Cart | Secure Area
                 <div class="container clearfix">
 
                     <div class="table-responsive bottommargin">
-
+{{-- <a href="{{ url('/cart/clear') }}" class="clear-cart"><i class="fa fa-trash-o"></i> Clear Cart</a> --}}
                         <table class="table cart">
                             <thead>
                                 <tr>
+                                    <th class="cart-product-id">ID</th>
                                     <th class="cart-product-remove">&nbsp;</th>
                                     <th class="cart-product-thumbnail">&nbsp;</th>
                                     <th class="cart-product-name">Product</th>
@@ -56,17 +58,29 @@ Cart | Secure Area
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="cart_item">
+                            @foreach($cart as $item)
+                                <tr class="cart_item product-{{ $item->product->id }}">
+                                <form action="{{ url('/cart/add/'.$item->product->id) }}" class="edit-cart-form">
+                                <td><a href="{{ url('/product/'.$item->product->id.'-'.Str::slug($item->product->name).'/show') }}">{{ $item->product->id }}</a></td>
                                     <td class="cart-product-remove">
-                                        <a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                                        <a href="{{ url('/cart/remove/'.$item->product->id) }}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
                                     </td>
 
                                     <td class="cart-product-thumbnail">
-                                        <a href="#"><img width="64" height="64" src="http://www.placehold.it/64x64/EFEFEF/AAAAAA" alt="Pink Printed Dress"></a>
+                                        <a href="#"><img width="64" height="64" src="{{ $item->product->thumbnail }}" /></a>
                                     </td>
 
                                     <td class="cart-product-name">
-                                        <a href="#">Pink Printed Dress</a>
+                                        <a href="{{ url('/product/'.$item->product->id.'-'.Str::slug($item->product->name).'/show') }}">
+                                        {{ $item->product->name }}
+                                        @if($item->options)
+                                            @foreach($options as $optionValue)
+                                                @if($optionValue->option->product->id == $item->product->id)
+                                                     - {{ $optionValue->value }}
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                        </a>
                                     </td>
 
                                     <td class="cart-product-price">
@@ -76,7 +90,7 @@ Cart | Secure Area
                                     <td class="cart-product-quantity">
                                         <div class="quantity clearfix">
                                             <input type="button" value="-" class="minus">
-                                            <input type="text" name="quantity" value="2" class="qty" />
+                                            <input type="text" value="{{ $item->amount }}" class="qty" name="quantity">
                                             <input type="button" value="+" class="plus">
                                         </div>
                                     </td>
@@ -84,83 +98,9 @@ Cart | Secure Area
                                     <td class="cart-product-subtotal">
                                         <span class="amount">$39.98</span>
                                     </td>
+                                </form>
                                 </tr>
-                                <tr class="cart_item">
-                                    <td class="cart-product-remove">
-                                        <a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-                                    </td>
-
-                                    <td class="cart-product-thumbnail">
-                                        <a href="#"><img width="64" height="64" src="http://www.placehold.it/64x64/EFEFEF/AAAAAA" alt="Checked Canvas Shoes"></a>
-                                    </td>
-
-                                    <td class="cart-product-name">
-                                        <a href="#">Checked Canvas Shoes</a>
-                                    </td>
-
-                                    <td class="cart-product-price">
-                                        <span class="amount">$24.99</span>
-                                    </td>
-
-                                    <td class="cart-product-quantity">
-                                        <div class="quantity clearfix">
-                                            <input type="button" value="-" class="minus">
-                                            <input type="text" name="quantity" value="1" class="qty" />
-                                            <input type="button" value="+" class="plus">
-                                        </div>
-                                    </td>
-
-                                    <td class="cart-product-subtotal">
-                                        <span class="amount">$24.99</span>
-                                    </td>
-                                </tr>
-                                <tr class="cart_item">
-                                    <td class="cart-product-remove">
-                                        <a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-                                    </td>
-
-                                    <td class="cart-product-thumbnail">
-                                        <a href="#"><img width="64" height="64" src="http://www.placehold.it/64x64/EFEFEF/AAAAAA" alt="Pink Printed Dress"></a>
-                                    </td>
-
-                                    <td class="cart-product-name">
-                                        <a href="#">Blue Men Tshirt</a>
-                                    </td>
-
-                                    <td class="cart-product-price">
-                                        <span class="amount">$13.99</span>
-                                    </td>
-
-                                    <td class="cart-product-quantity">
-                                        <div class="quantity clearfix">
-                                            <input type="button" value="-" class="minus">
-                                            <input type="text" name="quantity" value="3" class="qty" />
-                                            <input type="button" value="+" class="plus">
-                                        </div>
-                                    </td>
-
-                                    <td class="cart-product-subtotal">
-                                        <span class="amount">$41.97</span>
-                                    </td>
-                                </tr>
-                                <tr class="cart_item">
-                                    <td colspan="6">
-                                        <div class="row clearfix">
-                                            <div class="col-md-4 col-xs-4 nopadding">
-                                                <div class="col-md-8 col-xs-7 nopadding">
-                                                    <input type="text" value="" class="sm-form-control" placeholder="Enter Coupon Code.." />
-                                                </div>
-                                                <div class="col-md-4 col-xs-5">
-                                                    <a href="#" class="button button-3d button-black nomargin">Apply Coupon</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8 col-xs-8 nopadding">
-                                                <a href="#" class="button button-3d nomargin fright">Update Cart</a>
-                                                <a href="shop.html" class="button button-3d notopmargin fright">Proceed to Checkout</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                            @endforeach
                             </tbody>
 
                         </table>

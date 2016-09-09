@@ -40,7 +40,7 @@
             <div class="panel-body">
 
                 <div class="tabbable panel-tabs">
-                 {!! Form::open(['action' => '\Fully\Http\Controllers\Admin\PageController@store']) !!}
+                 {!! Form::open(['action' => '\App\Http\Controllers\Admin\PageController@store']) !!}
                     <ul class="nav nav-tabs">
                         <li class="active"> <a data-toggle="tab" href="#panel_tab_content"> Article Content </a> </li>
                         <li> <a data-toggle="tab" href="#panel_tab_seo"> SEO < META > </a> </li>

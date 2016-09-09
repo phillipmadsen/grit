@@ -69,6 +69,7 @@ return [
 'image_5' => 'Image 5',
 'description_for_quote' => 'Description For Quote',
 'pubished_at' => 'Pubished At',
+'productoptions' => 'Product Options',
 
 ];
 // TABS

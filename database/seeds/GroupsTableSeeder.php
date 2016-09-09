@@ -11,8 +11,8 @@ class GroupsTableSeeder extends Seeder
     {
         DB::table('groups')->truncate();
 
-        DB::table('groups')->insert(array(
-            array(
+        DB::table('groups')->insert([
+            [
                 'name' => 'Admin',
                 'permissions' => '{
                           "admin": 1,
@@ -43,14 +43,6 @@ class GroupsTableSeeder extends Seeder
                           "admin.news.store": 1,
                           "admin.news.edit": 1,
                           "admin.news.destroy": 1,
-                          "admin.news.destroy": 1,
-                          "admin.product.index": 1,
-                          "admin.product.view": 1,
-                          "admin.product.create": 1,
-                          "admin.product.store": 1,
-                          "admin.product.edit": 1,
-                          "admin.product.destroy": 1,
-
                           "admin.project.index": 1,
                           "admin.project.view": 1,
                           "admin.project.create": 1,
@@ -108,7 +100,7 @@ class GroupsTableSeeder extends Seeder
                         }',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-            ),
-        ));
+            ],
+        ]);
     }
 }

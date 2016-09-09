@@ -1,10 +1,10 @@
 <?php
 
-namespace Fully\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Fully\Repositories\Project\ProjectInterface;
-use Fully\Repositories\Slider\SliderInterface;
-use Fully\Repositories\Tag\TagInterface;
+use App\Repositories\Project\ProjectInterface;
+use App\Repositories\Slider\SliderInterface;
+use App\Repositories\Tag\TagInterface;
 use LaravelLocalization;
 
 /**

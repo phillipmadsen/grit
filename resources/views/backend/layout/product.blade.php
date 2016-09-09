@@ -26,7 +26,10 @@
         <link rel="stylesheet" href="{!! asset('/clip/assets/plugins/font-awesome/css/font-awesome.min.css') !!}">
         <link rel="stylesheet" href="{!! asset('/clip/assets/fonts/style.css') !!}">
         <link rel="stylesheet" href="{!! asset('/clip/assets/css/main.css') !!}">
-        <link rel="stylesheet" href="{!! asset('/clip/assets/css/main-responsive.css') !!}">
+
+        <link type="text/css" rel="stylesheet" href="{!! asset('/clip/assets/css/important.css') !!}" />
+
+
         <link rel="stylesheet" href="{!! asset('/clip/assets/plugins/iCheck/skins/all.css') !!}">
         <link rel="stylesheet" href="{!! asset('/clip/assets/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css') !!}">
         <link rel="stylesheet" href="{!! asset('/clip/assets/plugins/perfect-scrollbar/src/perfect-scrollbar.css') !!}">
@@ -53,7 +56,7 @@
 
         <link rel="stylesheet" href="{!! asset('/clip/assets/plugins/summernote/build/summernote.css') !!}">
 
-        <link rel="stylesheet" href="{!! asset('/clip/assets/css/important.css') !!}">
+        <link rel="stylesheet" href="{!! asset('/clip/assets/css/main-responsive.css') !!}">
 
         <style>
             .panel-body{padding:15px!important;} .panel-heading{padding:10px 15px;border-bottom:1px solid transparent;border-top-left-radius:3px;border-top-right-radius:3px;} .panel-heading{background-color:#F5F4F9;background-image:linear-gradient(to bottom,#F5F4F9 0%,#ECEAF3 100%);background-repeat:repeat-x;border-bottom:1px solid #CDCDCD;border-radius:6px 6px 0 0;box-shadow:0 1px 0 #FFFFFF inset;height:36px;padding-left:40px!important;position:relative;} .panel-default>.panel-heading{color:#333;background-color:#f5f5f5;border-color:#ddd;}

@@ -90,6 +90,7 @@ rows
 @include('frontend/layout/slider', $sliders)
 <div class="section-bottom-ribon" style="background-color:black; height: 31px;"></div> --}}
 
+ 
 
 @endsection
 
